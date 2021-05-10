@@ -1,0 +1,37 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmmtvend.hlp                   $
+$ data : 05/11/94                    $
+$ objetivo: Ajuda da manutencao de   $
+$ vendas.                            $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# tmmtvend mcodcli
+    Digite  o  c¢digo do cliente   que
+adquiriu  um  ou  mais equipamentos S¢ 
+ser„o aceitos clientes j  cadastrados.
+# fim
+
+# tmmtvend mcodfunc
+    Digite  o  c¢digo  do  funcionario 
+que  vendeu  o  equipamento.  S¢ ser„o 
+aceitos funcion rios j  cadastrados.
+# fim
+
+# tmmtvend mcodp
+    Digite a c¢digo do produto que foi
+comercializado. S¢  ser„o aceitos pro-
+dutos cadastrados previamente.
+# fim
+
+
+# tmmtvend mqtde
+    Entre com a quantidade do  produto
+que foi vendido.
+# fim
+
+# tmmtvend mdatapg
+    Entre com a data futura em que o
+pagamento do item ser  efetuado.
+# fim
+
+$ eof tmmtvend.hlp

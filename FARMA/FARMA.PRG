@@ -1,0 +1,294 @@
+SET BELL OFF
+SET DATE BRITISH
+SET SCORE OFF
+SET STATUS OFF
+SET WRAP ON
+SET TALK OFF
+
+SET PROCEDURE TO FDFUN
+
+blinkbit( .f. )
+CLEAR
+
+IF fontvalid(1)
+  FL3270(1)
+ENDIF
+
+ForeGround( "Sistema Farma Drugstore ", "W*/N" )
+
+SET COLOR TO R+/W*
+@ 0, 0 SAY SPACE(80)
+@ 24, 0 SAY SPACE(80)
+@ 0, 1 SAY "FIRST - SISTEMA FARMA DRUGSTORE v1.0á"
+SAYCENTER( 24, "Copyright (c) 1994 by First Group. All rights reserved." )
+SET COLOR TO W+/N*
+@ 1, 0 SAY replicate( "ß", 80 )
+SET COLOR TO W+/R*
+@ 1, 65 SAY " First Group "
+
+clock24( 0, 71, 240 )
+
+DO DesFarma
+
+IF !Senha( 10, 20, "FARMA" )
+  IF lastkey() <> 27
+    MESSAGE( "Senha invalida. Acesso Negado!!", 12 )
+  ENDIF
+  unclock24()
+  fontreset()
+  SET COLOR TO
+  CLEAR
+  QUIT
+ENDIF
+
+DO AbreArquivos
+
+SET COLOR TO W+/B
+DO WHILE .T.
+   nLin = 3
+   nCol = 2
+   window( nLin, nCol, nLin + 8, nCol + 26, "Menu Principal" )
+   @ nLin + 1, nCol + 1 PROMPT " 1 - Manutencao de Dados "
+   @ nLin + 2, nCol + 0 SAY   "ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶"
+   @ nLin + 3, nCol + 1 PROMPT " 2 - Controle de Estoque "
+   @ nLin + 4, nCol + 1 PROMPT " 3 -    Contas a Receber "
+   @ nLin + 5, nCol + 1 PROMPT " 4 -      Contas a Pagar "
+   @ nLin + 6, nCol + 0 SAY   "ÇÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¶"
+   @ nLin + 7, nCol + 1 PROMPT " 5 -    Sair do programa "
+   MENU TO nOpc
+
+   DO CASE
+     CASE nOpc = 1
+       DO FDMAN
+     CASE nOpc = 2
+       DO FDEST
+     CASE nOpc = 3
+       DO FDREC
+     CASE nOpc = 4
+       DO FDPAG
+     CASE nOpc = 5 .or. nOpc = 0
+       EXIT
+   ENDCASE
+
+ENDDO
+UNCLOCK24()
+fontreset()
+SET COLOR TO
+CLEAR
+blinkbit( .t. )
+
+PROCEDURE DesFarma
+   tel1 = "°"
+   SET COLOR TO W/N*
+   @ 4,12,4,18 BOX TEL1
+   @ 5,11,5,14 BOX TEL1
+   @ 6,10,6,13 BOX TEL1
+   @ 7,11,7,14 BOX TEL1
+   @ 8,12,8,17 BOX TEL1
+   @ 9,15,9,18 BOX TEL1
+   @ 10,16,10,19 BOX TEL1
+   @ 11,15,11,18 BOX TEL1
+   @ 12,11,12,17 BOX TEL1
+   INKEY(0.1)
+   @ 4,22,12,23 BOX TEL1
+   @ 4,28,4,34 BOX TEL1
+   @ 5,27,5,30 BOX TEL1
+   @ 6,26,6,29 BOX TEL1
+   @ 7,27,7,30 BOX TEL1
+   @ 8,28,8,33 BOX TEL1
+   INKEY(0.1)
+   @ 9,31,9,34 BOX TEL1
+   @ 10,32,10,35 BOX TEL1
+   @ 11,31,11,34 BOX TEL1
+   @ 12,27,12,33 BOX TEL1
+   @ 4,38,5,43 BOX TEL1
+   @ 6,40,12,41 BOX TEL1
+   @ 4,46,5,51 box tel1
+   INKEY(0.1)
+   @ 6,46,12,47 BOX TEL1
+   @ 7,48,9,49 BOX TEL1
+   @ 11,48,12,51 box tel1
+   INKEY(0.1)
+   @ 4,54,12,55 BOX TEL1
+   @ 5,56,9,56 BOX TEL1
+   @ 6,57,10,57 BOX TEL1
+   @ 7,58,11,58 BOX TEL1
+   @ 4,61,12,62 BOX TEL1
+   @ 5,60,9,60 BOX TEL1
+   @ 6,59,10,59 BOX TEL1
+   INKEY(0.1)
+   @ 4,65,12,66 BOX TEL1
+   @ 4,67,5,68 BOX TEL1
+   @ 4,69,12,70 BOX TEL1
+   @ 8,67,9,68 BOX TEL1
+   INKEY(0.1)
+   @ 15,2,20,3 BOX TEL1
+   @ 15,4,15,5 BOX TEL1
+   @ 17,4,18,4 BOX TEL1
+   INKEY(0.1)
+   @ 15,7,15,10 BOX TEL1
+   @ 16,7,20,7 BOX TEL1
+   @ 16,10,20,10 BOX TEL1
+   @ 17,8,18,9 BOX TEL1
+   @ 15,12,15,15 BOX TEL1
+   INKEY(0.1)
+   @ 16,12,20,12 BOX TEL1
+   @ 16,15,17,15 BOX TEL1
+   @ 17,13,17,14 BOX TEL1
+   @ 18,13,18,13 BOX TEL1
+   INKEY(0.1)
+   @ 19,14,19,14 BOX TEL1
+   @ 20,15,20,15 BOX TEL1
+   @ 15,17,20,17 BOX TEL1
+   @ 16,18,18,18 box tel1
+   INKEY(0.1)
+   @ 17,19,19,19 BOX TEL1
+   @ 16,20,18,20 BOX TEL1
+   @ 15,21,20,21 BOX TEL1
+   @ 15,23,15,26 BOX TEL1
+   INKEY(0.1)
+   @ 16,23,20,23 BOX TEL1
+   @ 16,26,20,26 BOX TEL1
+   @ 17,24,18,25 BOX TEL1
+   @ 15,34,20,34 BOX TEL1
+   INKEY(0.1)
+   @ 15,35,15,36 BOX TEL1
+   @ 20,35,20,36 BOX TEL1
+   @ 16,37,19,37 BOX TEL1
+   INKEY(0.1)
+   @ 15,39,15,42 BOX TEL1
+   @ 16,39,20,39 BOX TEL1
+   @ 15,42,17,42 BOX TEL1
+   INKEY(0.1)
+   @ 17,40,18,40 BOX TEL1
+   @ 18,40,18,40 BOX TEL1
+   @ 19,41,19,41 BOX TEL1
+   INKEY(0.1)
+   @ 20,42,20,42 BOX TEL1
+   @ 15,44,20,44 BOX TEL1
+   @ 17,41,17,41 BOX TEL1
+   INKEY(0.1)
+   @ 15,47,20,47 BOX TEL1
+   @ 20,45,20,46 BOX TEL1
+   @ 15,49,20,49 BOX TEL1
+   INKEY(0.1)
+   @ 15,50,15,52 BOX TEL1
+   @ 16,52,16,52 BOX TEL1
+   @ 20,50,20,52 BOX TEL1
+   INKEY(0.1)
+   @ 18,51,18,52 BOX TEL1
+   @ 19,52,19,52 BOX TEL1
+   @ 18,51,18,51 BOX TEL1
+   INKEY(0.1)
+   @ 15,54,15,57 BOX TEL1
+   @ 16,54,17,55 BOX TEL1
+   @ 17,56,20,57 BOX TEL1
+   INKEY(0.1)
+   @ 20,54,20,55 BOX TEL1
+   @ 15,59,15,62 BOX TEL1
+   @ 16,60,20,61 BOX TEL1
+   INKEY(0.1)
+   @ 15,64,20,67 BOX TEL1
+   @ 15,69,15,72 BOX TEL1
+   @ 15,69,20,69 BOX TEL1
+   INKEY(0.1)
+   @ 15,72,17,72 BOX TEL1
+   @ 17,70,17,71 BOX TEL1
+   @ 18,70,18,70 BOX TEL1
+   INKEY(0.1)
+   @ 19,71,19,71 BOX TEL1
+   @ 20,72,20,72 BOX TEL1
+   @ 15,74,15,77 BOX TEL1
+   INKEY(0.1)
+   @ 16,74,20,74 BOX TEL1
+   @ 17,74,18,76 BOX TEL1
+   @ 20,75,20,77 BOX TEL1
+   INKEY(0.1)
+RETURN
+
+PROCEDURE AbreArquivos
+  PRIVATE sTela, sOld
+
+  SAVE SCREEN TO sTela
+  sOld = setcolor( "W+/R*" )
+  window( 5, 20, 7, 66, "" )
+  @ 6, 22 SAY "Por favor espere... Verificando arquivos!"
+  setcolor( sOld )
+
+* Arquivo de Clientes
+  SELECT 0
+  IF !FILE( "ARQCLI1.NTX" ) .or. !FILE( "ARQCLI2.NTX" )
+    USE FDACLI ALIAS ArqCli
+    INDEX ON BCODCLI TO ARQCLI1
+    INDEX ON BNOMCLI TO ARQCLI2
+    CLOSE
+  ENDIF
+  SELECT 0
+  USE FDACLI INDEX ARQCLI1, ARQCLI2 ALIAS ArqCli
+
+* Arquivo de Fornecedores
+  SELECT 0
+  IF !FILE( "ARQFOR1.NTX" ) .OR. !FILE( "ARQFOR2.NTX" )
+    USE FDAFOR ALIAS ArqFor
+    INDEX ON BCODFOR TO ARQFOR1
+    INDEX ON BNOMFOR TO ARQFOR2
+    CLOSE
+  ENDIF
+  SELECT 0
+  USE FDAFOR INDEX ARQFOR1, ARQFOR2 ALIAS ArqFor
+
+* Arquivo de Funcionarios
+  SELECT 0
+  IF !FILE( "ARQFUN1.NTX" ) .or. !FILE( "ARQFUN2.NTX" )
+    USE FDAFUN ALIAS ArqFun
+    INDEX ON BCODFUN TO ARQFUN1
+    INDEX ON BNOMFUN TO ARQFUN2
+    CLOSE
+  ENDIF
+  SELECT 0
+  USE FDAFUN INDEX ARQFUN1, ARQFUN2 ALIAS ArqFun
+
+* Arquivo de Produtos
+  SELECT 0
+  IF !FILE( "ARQPRO.NTX" )
+    USE FDAPRO ALIAS ArqPro
+    INDEX ON BCODPRO TO ARQPRO
+  ENDIF
+  USE FDAPRO INDEX ARQPRO ALIAS ArqPro
+
+* Arquivo de Entrada de Produtos
+  SELECT 0
+  IF !FILE( "ARQENT1.NTX" )
+    USE FDAENT ALIAS ArqEnt
+    INDEX ON BFORENT TO ARQENT1
+    INDEX ON BDATENT TO ARQENT2
+    CLOSE
+  ENDIF
+  SELECT 0
+  USE FDAENT INDEX ARQENT1, ARQENT2 ALIAS ArqEnt
+
+* Arquivo de Contas a Receber
+  SELECT 0
+  IF !FILE( "ARQREC1.NTX" ) .AND. !FILE( "ARQREC2.NTX" )
+    USE FDAREC ALIAS ArqREC
+    INDEX ON BCLIREC TO ARQREC1
+    INDEX ON BDATREC TO ARQREC2
+    CLOSE
+  ENDIF
+  SELECT 0
+  USE FDAREC INDEX ARQREC1, ARQREC2 ALIAS ArqRec
+
+* Arquivo de Duplicatas
+  SELECT 0
+  IF !FILE( "ARQDUP1.NTX" )
+    USE FDADUP ALIAS ArqDup
+    INDEX ON BNUMDUP+STR(BFORDUP,5) TO ARQDUP1
+    CLOSE
+  ENDIF
+  SELECT 0
+  USE FDADUP INDEX ARQDUP1 ALIAS ArqDup
+
+  RESTORE SCREEN FROM sTela
+
+RETURN
+

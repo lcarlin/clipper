@@ -1,0 +1,97 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmmtcli.hlp                    $
+$ data 05/11/94                      $
+$ objetivo  : ajuda da manutecao de  $
+$ clientes                           $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Ajuda da Manutencao de clientes
+
+# tmmtcli mcod
+    Digite o codigo do  cliente, caso
+o   cliente  nao  exista,  voce podera 
+incluir   um novo  cliente   com  esse 
+codigo.  Se  voce nao souber  o codigo 
+do    cliente, tecle  < ENTER>  e  uma 
+tabela  com  os  codigo   de  todos os 
+clientes  aparecera   e  voce   podera 
+escolher o  cliente  que  desejar. 
+Para cancelar tecle <ESC>
+# fim
+                                    
+# tmmtcli mcep
+    Digite  o  CEP  da  cidade  onde o 
+cliente reside. O CEP esta no  formato 
+de 8 digitos separados por  um hifem
+# fim
+
+# tmmtcli mcid
+    Digite o nome da cidade em  que o
+cliente  reside.  Pode-se  abreviar  o 
+nome  da  cidade,  caso  n„o  caiba no 
+espa‡o  reservado  para  digita‡„o  da 
+mesma.
+# fim
+
+# tmmtcli mcgc
+    Digite  o  CGC do  cliente. Caso o 
+cliente  seja  uma pessoa f¡sica e n„o
+possua   CGC,   este campo  pode ficar 
+em branco.
+# fim
+
+# tmmtcli mender
+    Digite  o  endere‡o  do cliente. O
+endereco pode ser de sua residenia  ou
+de sua empresa.
+# fim
+
+# tmmtcli mest
+    Digite as iniciais do estado que o 
+cliente   mora.   S¢  ser   aceito  os 
+estados  que  existem   atualmente  no 
+Brasil.
+# fim
+
+# tmmtcli mfax
+    Digite o  n£mero do fax do cliente
+caso o cliente  n„o possua um, pode-se
+deixar em branco. Caso o numero do fax 
+seja  o  mesmo  do  telefone,  deve-se
+colocar   o  mesmo  n£mero  nos   dois 
+campos.
+# fim
+
+# tmmtcli minsc
+    Digite  o  n£mero  da    Inscri‡„o
+Estadual  do  cliente,  no   caso   do
+cliente   ser  uma   firma.   Caso   o
+cliente seja uma pessoa f¡sica  e  n„o 
+possua   a  Inscri‡„o Estadual,   este
+campo   pode  ficar vazio.
+# fim
+
+# tmmtcli mnome
+    Digite o nome  do cliente. No caso
+do  cliente  ser uma  firma,  digite o
+nome  da  firma. Pode-se   abreviar  o
+nome,   caso   n„o  caiba   no  espa‡o
+reservado para a digita‡„o.
+# fim
+
+# tmmtcli mrg
+    Digite o n£mero do RG  do cliente,
+caso o cliente seja uma  pessoa f¡sica
+Se o cliente for uma firma, este campo
+pode ficar em branco.
+# fim
+
+# tmmtcli mtel
+    Digite  o  n£mero  do telefone  do 
+cliente  caso o cliente n„o possua um,
+pode-se  deixar  em   branco.  Caso  o
+numero   do   fax   seja  o  mesmo  do 
+telefone,  deve-se   colocar  o  mesmo
+n£mero   nos   dois campos.
+# fim
+
+$ oef tmmtcli.hlp

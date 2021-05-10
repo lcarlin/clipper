@@ -1,0 +1,43 @@
+# camtcli ccod
+  Neste espaco, voce devera digitar o
+codigo do cliente. Caso voce nao saiba
+,tecle <ENTER> e uma tabela com  todos
+os codigos de todos os clientes apare-
+cera e voce podera escolher o  cliente
+pressionando, <ENTER> no codigo  dese-
+jado.
+
+Obs. O Codigo XXXXXX existe  para  ser
+utilizados  com cliente que apenas com
+pram  uma  vez.  Seus  dados  esta  em 
+branco  e  seu nome e' "Cliente nao es
+peifico". Utilize-o  para efetuar movi
+mentacoes e outras operacoes.
+
+# fim
+
+
+# camtcli cnome
+   Neste local, voce devera digitar  o
+nome  do  cliente, o nome pode ter ate 
+40 letras. Se o cliente for  uma firma
+, coloque o nome da firma.
+# fim
+
+# camtcli cende
+   Entre com o Endereco do  Cliente. O
+endereco  pode   ser   residencial  ou 
+comercial.
+# fim
+
+# camtcli ccid
+   Entre  com  o  nome  da  cidade  em 
+que o cliente reside.
+# fim
+
+# camtcli ctel
+   Entre com o numero do  telefone  ou
+fax  do  cliente.  Caso  o cliente nao
+possua  telefone  ou  fax,  este campo
+pode ficar em branco.
+# fim

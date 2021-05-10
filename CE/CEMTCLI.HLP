@@ -1,0 +1,74 @@
+# cemtcli ccod
+  Neste espaco, voce devera digitar o
+codigo do cliente. Caso voce nao saiba
+,tecle <ENTER> e uma tabela com  todos
+os codigos de todos os clientes apare-
+cera e voce podera escolher o  cliente
+pressionando, <ENTER> no codigo  dese-
+jado.
+
+Obs. O Codigo XXXXXX existe  para  ser
+utilizados  com cliente que apenas com
+pram  uma  vez.  Seus  dados  esta  em 
+branco  e  seu nome e' "Cliente nao es
+peifico". Utilize-o  para efetuar movi
+mentacoes e outras operacoes.
+
+# fim
+
+
+# cemtcli cnome
+   Neste local, voce devera digitar  o
+nome  do  cliente, o nome pode ter ate 
+40 letras. Se o cliente form uma firma
+, coloque o nome da firma.
+# fim
+
+# cemtcli crg
+   Digite o numero do R.G. do cliente.
+   Se o cliente for uma firma, este
+campo pode ficar em branco.
+# fim
+
+# cemtcli ccpf
+   Digite  o   numero   do  C.P.F.  do
+cliente. Se o  cliente for uma  firma,
+este campo pode ficar em branco.
+# fim
+
+# cemtcli cince
+   Digite  o   numero   da   Inscricao
+Estadual do cliente, caso o mesmo seja
+uma firma.  Se  o cliente nao for uma  
+firma,  este  campo   pode   ficar  em
+branco. 
+# fim
+
+# cemtcli cende
+   Entre com o Endereco do  Cliente. O
+endereco  pode   ser   residencial  ou 
+comercial.
+# fim
+
+# cemtcli ccid
+   Entre  com  o  nome  da  cidade  em 
+que o cliente reside.
+# fim
+
+# cemtcli cest
+   Entre com as iniciais do estado  em
+que  o  cliente  mora. So sera aceitos
+estados existentes.
+# fim
+
+# cemtcli ctel
+   Entre com o numero do  telefone  ou
+fax  do  cliente.  Caso  o cliente nao
+possua  telefone  ou  fax,  este campo
+pode ficar em branco.
+# fim
+
+# cemtcli ccep
+   Entre com o C.E.P. da cidade do cli
+ente.
+# fim

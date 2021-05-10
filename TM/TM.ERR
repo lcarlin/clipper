@@ -1,0 +1,70 @@
+set wrap on
+Error in line 14: Unrecognized phrase/keyword in command.
+sombra(01,03,03,75,.f.)
+Error in line 73: Unrecognized command verb.
+sombra(20,01,22,28,.f.)
+Error in line 79: Unrecognized command verb.
+sombra(07,20,16,56,.t.)
+Error in line 82: Unrecognized command verb.
+sombra(10,24,12,45,.F.)
+Error in line 138: Unrecognized command verb.
+VERI_AGD()
+Error in line 143: Unrecognized command verb.
+VERI_DIA()
+Error in line 144: Unrecognized command verb.
+SOMBRA(04,03,09,16,.f.)
+Error in line 167: Unrecognized command verb.
+ELSEIF AC1=2
+Error in line 176: Unrecognized command verb.
+ELSEIF AC1=3
+Error in line 178: Unrecognized command verb.
+ELSEIF AC1=4
+Error in line 180: Unrecognized command verb.
+SOMBRA(04,15,07,26,.f.)
+Error in line 186: Unrecognized command verb.
+ELSEIF AC2=2
+Error in line 195: Unrecognized command verb.
+SOMBRA(05,20,08,29,.F.)
+Error in line 197: Unrecognized command verb.
+ELSEIF NPRG = 2
+Error in line 203: Unrecognized command verb.
+SOMBRA(04,27,08,36,.f.)
+Error in line 210: Unrecognized command verb.
+ELSEIF AC3=2
+Error in line 219: Unrecognized command verb.
+ELSEIF AC3=3
+Error in line 221: Unrecognized command verb.
+SOMBRA(05,32,08,43,.F.)
+Error in line 223: Unrecognized command verb.
+SOMBRA(07,40,09,74,.F.)
+Error in line 228: Unrecognized command verb.
+ELSEIF NPRG = 2
+Error in line 233: Unrecognized command verb.
+SOMBRA(04,39,08,48,.f.)
+Error in line 240: Unrecognized command verb.
+elseIF AC4=2
+Error in line 249: Unrecognized command verb.
+elseif ac4=3
+Error in line 251: Unrecognized command verb.
+SOMBRA(04,51,08,60,.f.)
+Error in line 257: Unrecognized command verb.
+elseif ac5=2
+Error in line 266: Unrecognized command verb.
+elseif ac5=3
+Error in line 268: Unrecognized command verb.
+SOMBRA(04,63,10,73,.f.)
+Error in line 274: Unrecognized command verb.
+ELSEIF AC6=2
+Error in line 283: Unrecognized command verb.
+ELSEIF AC6 = 3
+Error in line 285: Unrecognized command verb.
+ELSEIF AC6 = 4
+Error in line 287: Unrecognized command verb.
+SOMBRA(08,60,11,78,.F.)
+Error in line 290: Unrecognized command verb.
+elseif ac6 = 5
+Error in line 303: Unrecognized command verb.
+SAI()
+Error in line 312: Unrecognized command verb.
+VERI_DIA()
+Error in line 331: Unrecognized command verb.

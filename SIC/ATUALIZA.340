@@ -1,0 +1,58 @@
+01/09/95
+
+Novidades da vers„o 3.40 do SIC
+þþþþþþþþþþþþþþþþþþþþþþþþþþþþþþþ
+
+1. Estoque
+
+
+1.1 - Foi adicionado mais um campo ao controle de estoque, ou seja, mais uma
+informacao sobre cada produtodo estoque, o SETOR. Este campo permite dividir
+em grupos os itens do estoque. Para utilizar, primeiro crie uma tabela de
+setores, pela opcao "Configuracao/Setores do estoque" no menu estoque.
+Exemplos de utilizacao: Em um controle de estoque de fitas de video, esse campo
+pode conter o "genero" do filme. Em um supermercado, este campo pode conter o
+"tipo" de produto, como cereais, frutas, material de limpeza, etc...
+* PS: Sera desenvolvida uma tabela de precos por setor.
+
+1.2 - A opcao "Controle de pedidos" mudou de nome, passa a se chamar
+"Pedidos/Orcamentos", pois agora tambem controla os orcamentos.
+Todos os orcamentos agora podem ser gravados.
+Para ativar a funcao de gravacao automatica dos orcamentos, utilize a opcao
+"Configuracao/Configuracao geral" do menu estoque.
+
+1.3 - Foi incluido o campo "Numero do pedido" no arquivo de saidas, para
+diferenciar "pedido" de "nota fiscal".
+
+1.4 - Requisicoes de vendedores - Se for habilitada esta opcao na configuracao
+geral do estoque, o ponto de venda muda, passando a operar da seguinte forma:
+Nunca baixa fitas do estoque quando forem "vendas", somente quando forem
+"outros" tipos de saida no estoque, como "requisicoes" de vendedores. 
+Quando for "venda", a baixa e' sempre dada na conta do vendedor, nunca no
+estoque. ATENCAO! NA VERSAO 3.41 esta opcao foi excluida, maiores detalhes
+consulte o arquivo atualiza.341
+
+1.5 - Foi incluida mais uma opcao na configuracao do Ponto de venda, a numero
+7, ponto de venda resumido. Habilitando esta opcao o Ponto de venda nao pede
+varias informacoes depois da digitacao dos produtos vendidos, indo direto para
+impressao do comprovante de venda.
+
+
+2. Controle de cheques
+
+2.1 - Foi aperfeicoada a entrada de cheques, permitindo a entrada de varios
+cheques de uma so vez e conferindo seus valores, atravez da entrada do
+valor total.
+
+
+3. Cadastro de clientes
+
+3.1 - Foi incluido um tipo de cliente em especial, o "cliente devedor", que
+identifica um cliente que nao pode comprar, ou seja: O "ponto de venda" e a 
+"atualizacao do estoque/saida" nao vao prosseguir com a venda caso ela seja
+feita para um cliente que esteja assim classificado. Isto pode evitar que os 
+"caloteiros" continuem comprando na firma. Se for configurada a atribuicao 
+automatica na opcao de configuracao do contas a receber, o sistema atribui
+automaticamente como devedor os clientes que estiverem em atrazo.
+
+3.2 - O "tipo" de cliente so pode ser alterado com a senha de nivel 2 ou 3.

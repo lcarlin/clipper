@@ -1,0 +1,99 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmmtfor.hlp                    $
+$ data 05/11/94                      $
+$ objetivo : ajuda da manutencao de  $
+$ fornecedores                       $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+$ Ajuda da manutencao de fornecedores
+
+# tmmtfor mcodfor
+    Digite o c¢digo do forncedor, caso
+o fornecedor n„o  exista,  voce poder 
+incluir   um novo fornecedor com  esse
+c¢digo.  Se  voce nao souber  o c¢digo
+,tecle   <ENTER>   e  uma  tabela  com
+os  c¢digo  de  todos  os fornecedores
+aparecera  e  voce podera  escolher  o
+desejado.
+Para cancelar tecle <ESC>
+# fim
+                                    
+# tmmtfor mcepfor
+    Digite  o  CEP  da  cidade  onde o
+fornecedor  reside.  O   CEP  esta  no
+formato de 8 digitos separados por  um
+hifem.
+# fim
+
+# tmmtfor mcidfor
+    Digite o nome da cidade em  que  o
+fornecedor reside. Pode-se  abreviar o
+nome  da  cidade,  caso  n„o  caiba no
+espa‡o  reservado  para  digita‡„o  da
+mesma.
+# fim
+
+# tmmtfor mcgcfor
+    Digite o CGC do fornecedor. Caso o
+fornecedor  seja  uma  pessoa f¡sica e
+n„o possua CGC,este  campo  pode ficar
+em branco.
+# fim
+
+# tmmtfor menderfor
+    Digite o endere‡o do fornecedor. O
+endere‡o pode ser de sua residencia ou
+de sua empresa.
+# fim
+
+# tmmtfor mestfor
+    Digite as iniciais do estado que o
+fornecedor mora.  S¢  ser   aceito  os
+estados  que  existem   atualmente  no
+Brasil.
+# fim
+
+# tmmtfor mfaxfor
+    Digite   o   n£mero   do  fax   do
+fornecedor. Caso ele  n„o  possua  um,
+pode-se  deixar  em   branco.  Caso  o
+numero do fax seja o mesmo do telefone
+deve-se  colocar  o  mesmo  n£mero nos
+dois campos.
+# fim
+
+# tmmtfor minscfor
+    Digite  o  n£mero  da    Inscri‡„o
+Estadual do fornecedor.
+# fim
+
+# tmmtfor mnomefor
+    Digite o nome do fornecedor. Pode-
+-se abreviar o nome, caso n„o caiba no
+espa‡o reservado para a digita‡„o.
+# fim
+
+# tmmtfor mrgfor
+    Digite   o   n£mero   do   RG   do
+fornecedor. Caso  o   ele  n„o  possua
+(o  fornecedor  ser  uma empresa) este
+campo pode ficar em branco.
+# fim
+
+# tmmtfor mtelfor
+    Digite  o  n£mero  do telefone  do
+fornecedor  caso  ele  n„o  possua um,
+pode-se  deixar  em   branco.  Caso  o
+numero   do   fax   seja  o  mesmo  do
+telefone,  deve-se   colocar  o  mesmo
+n£mero   nos   dois campos.
+# fim
+
+# tmmtfor mprod
+    Digite  o  nome  do   item/produto
+fornecido  por  ele.  Se  o  nome  n„o
+couber no espa‡o, pode-se abreviar.
+# fim
+
+$ eof tmmtfor.hlp

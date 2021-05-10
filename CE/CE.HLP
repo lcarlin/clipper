@@ -1,0 +1,29 @@
+# ce
+
+      Ajuda do Sistema de controle De
+   estoques :
+
+      Menu principal
+
+   Para  selecionar a opcao, utilize as
+ setas de direcao e <ENTER> para sele-
+ cionar a opcao desejada.
+
+# fim
+
+# ce l_nome
+  Entre com o nome da pessoa que com-
+prou a copia do programa, para fim de
+evitar copias piratas.
+# fim
+
+# ce l_empresa
+  Entre com o nome da empresa em que
+o programa foi instalado
+# fim
+
+# ce data_sis
+   Verifique se a data apresentada nes
+ta caixa de dialogo e' a data atual,se 
+nao for, altere - a.
+# fim

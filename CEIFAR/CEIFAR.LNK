@@ -1,0 +1,24 @@
+NOBELL
+BLI INC OFF
+BLI OVE OPS 20
+BLI OVE PAGEFRAME ON
+BLI CAC XMS 50%,1024
+BLI CAC EMS 50%,1024
+BLI OVE UMB ON
+BEGIN
+   FILE PAmenu
+   FILE   Pacapgr
+   FILE   palcatd
+   FILE   palcatv
+   FILE   pamtatd
+   FILE   pamtatv
+   FILE   pamtgru
+   FILE   pamtinst
+   FILE   pamtusu1
+   FILE   ERRORSYS
+ENDAREA
+LIB CS001B
+OUTPUT  PA
+@CL520MID.LNK
+READONLY
+

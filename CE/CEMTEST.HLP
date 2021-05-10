@@ -1,0 +1,69 @@
+# cemtest ccod
+   Entre com o  codigo  do produto  em
+estoque. Caso o codigo nao exista,sera
+pedida a confirmacao para cadastrar um
+novo  item  com  o codigo digitado. Se 
+quiser  alterar  algum  dado  de algum 
+produto  em estoque e nao souber o co-
+digo,  pressione  a  tecla  <ENTER>  e 
+aparecera uma tabela com todos dos co-
+digos  de  todos os produtos cadastra-
+dos.  Utilize  as setas de direcao e a 
+tecla  <ENTER> para selecionar o codi-
+go desejado.
+# fim
+
+# cemtest cproduto
+   Entre com a descricao do produto ou
+nome do produto cadastrado.
+# fim
+
+# cemtest cembalagem
+  Entre com a descricao da emblagem de
+cada unidade do produto. Ex frasco com
+20ml, etc..  Este campo  pode ficar em
+branco.
+# fim
+
+# cemtest nvalunit
+  Entre com o valor unitario DE COMPRA
+do produto.
+# fim
+
+# cemtest nvalunitv
+  Entre com o valor  unitario DE VENDA
+do produto.
+# fim
+
+# cemtest nqtd
+  Entre com  a  quantidade comprada do
+produto. Esta quantidade so podera ser
+alterada na Movimentacao de materiais.
+# fim
+
+# cemtest nqtdmin
+  Entre  com a  quantidade  minima  do
+produto,  A  quantidade  minima  serve
+como reserava no estoque, e, por isso,
+as baixas nao poderao romper esse  li-
+mite. Este campo pode ser alterado li-
+vremente.
+# fim
+
+# cemtest ccodfor
+  Entre com o codigo do fornecedor que
+vendeu o produto que esta sendo cadas-
+trado
+# fim
+
+# cemtest ndiaspra
+  Entre com os dias de prazo para o ve
+ncimento de cada  parcela do  valor da
+compra. Ex. 30 dias para cada Parcela.
+# fim
+
+# cemtest nparcelas
+  Entre com o numero de parcelas do pa
+gamento da compra efetuada. Ex 3 parce
+las.
+# fim

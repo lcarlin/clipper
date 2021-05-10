@@ -1,0 +1,65 @@
+
+                        Novidades da vers„o 3.41 do SIC
+                        þþþþþþþþþþþþþþþþþþþþþþþþþþþþþþþ
+
+
+1. Altera‡oes gerais
+--------------------
+
+1.1 - O sistema de SENHAS de acesso foi alterado, porem continua compativel
+      com as senhas atuais. O programa agora so pede a senha quando ‚
+      inicializado. Dependendo do nivel da senha digitada (1/2/3)
+      o programa libera ou n„o o acesso a algumas fun‡oes.
+
+1.2 - Foi criado mais um nivel de senha, o nivel 3.
+
+1.3 - Cada funcionario agora pode ter sua propria senha para entrar
+      no programa e cada senha tem o seu nivel de acesso.
+      Caso a senha digitada seja de um vendedor e a opcao 7 da configuracao
+      geral do estoque esteja habilitada, o sistema nao pergunta mais qual 
+      vendedor na saida do estoque, e tambem nao permite que um funcionario
+      que nao seja vendedor utilize o ponto de venda.
+
+1.4 - A senha de nivel 1 agora n„o permite: Apagar, Editar, Quitar, ver o
+      pre‡o de custo e tirar relatorios. 
+      O acesso ao controle de caixa foi liberado.
+      Somente com a senha de nivel 3 ‚ possivel alterar todas as senhas.
+
+1.5 - A qualquer momento no programa o nivel de operacao/funcionario pode ser 
+      alterado, bastando para isso teclar F12 e digitar a senha do nivel 
+      desejado ou do funcionario.
+      
+
+2. Estoque
+----------
+
+2.1 - O campo SETOR foi aumentado para 3 caracteres ou numeros.
+
+2.2 - Foi incluida a op‡„o de reemiss„o do comprovante de venda, a partir
+      do numero do pedido.
+
+2.3 - Requisi‡oes pendentes de vendedores - Agora a baixa no estoque (venda)
+      do vendedor ‚ feita na op‡„o "Controle de vendas/Vendedores/Requisi‡„o
+      pendente/Venda".
+      Foi excluida a configura‡„o para esse tipo de opera‡„o.
+
+2.4 - Foi incluida a op‡„o "Por setor" no relatorio de estoque e na tabela
+      de pre‡os.
+
+2.5 - O sistema agora atualiza o campo fornecedor na listagem de itens quando
+      ‚ feita uma atualiza‡„o/entrada no estoque, colocando o codigo ou nome
+      do ultimo fornecedor.
+
+
+3. Cadastros de clientes
+------------------------
+
+3.1 - Foi incluido mais um campo nos cadastros de clientes, vendedor. Neste
+      campo entra o codigo do vendedor reponsavel pelo cliente, neste caso
+      qualquer venda feita para este cliente, o sistema ja sabe qual foi o
+      vendedor que fez. Caso o campo esteja vazio, o sistema vai funcionar
+      conforme o padrao, pergunta qual ‚ o vendedor. O sistema tambem nao 
+      permite que ninguem venda para este cliente, a nao ser o vendedor que
+      esta neste campo.	
+
+3.2 - A pesquisa agora pode ser feita tambem por CGC ou CPF.

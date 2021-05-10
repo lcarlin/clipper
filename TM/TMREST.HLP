@@ -1,0 +1,24 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmrest.hlp                     $
+$ data : 05/11/94                    $
+$ objetivo: Ajuda do relatorio de    $
+$ estoque.                           $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# tmrest lan
+    Escolha uma das op‡”es :
+    [Baixas] - Relat¢rio de baixas de
+estoque;
+    [Entrada] - Relat¢rio das entra-
+das no estoque;
+     [Geral] - Relat¢rio de todos os
+itens contidos no estoque.
+# fim
+
+# tmrest la_
+    Utilize as setas de dire‡„o  para
+escolher a op‡„o e <ENTER> para sele-
+cionar
+# fim
+
+$ eof tmrest.hlp

@@ -1,0 +1,50 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmhelp.hlp                     $
+$ Arquivo com os textos de ajuda do  $
+$ Sistema Tec Maq.                   $
+$ Data   :  04/11/94                 $
+$ Autores: Ana Paula  02, Daniele 07 $
+$        : Everton 09; Luiz 14       $
+$ Observacao: Este arquivo nao deve  $
+$ ser alterado.                      $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+# memoedit
+    Use: <CTRL>+W  para  gravar, <ESC> 
+para abandonar,  setas para movimentar
+-se entre as linhas, <PgUp> para subir
+uma pagina, <PgDn> para descer uma pa-
+gina, <HOME> Para ir para o come‡o  da 
+linha e <END> para o final.
+# fim
+
+# achoice
+    Utilize as setas de dire‡„o  para
+selecionar a sua op‡„o. Ap¢s selecio-
+na-l , tecle <ENTER>.
+# fim
+
+# dbedit
+    Utilize  as seta de  dire‡„o  para 
+movimentar-se entre  as linhas, <PgUp> 
+para  subir  uma  pagina, <PgDn>  para 
+descer  uma  pagina,  <HOME>  Para  ir 
+para  o  come‡o  da linha e <END> para
+o final. Para sair, Tecle <ESC>.
+# fim
+
+# confirma var
+    Fa‡a a sua escolha atrav‚s das 
+setas de dire‡„o: [Sim] para a confir-
+ma‡„o ou [N„o] para cancelar.
+# fim
+
+# alter escolha
+    Atrav‚s das setas escolha entre as
+op‡oes: 
+    [Altera], que permitir  a altera-
+‡„o dos dados apresentados na tela;
+    [Excluir], que excluir  o regitro
+apresentado na tela;
+    [Retorna], que abandona o registro
+altual, sem altera‡”es.
+# fim

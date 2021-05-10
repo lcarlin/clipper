@@ -1,0 +1,18 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmcbest.hlp                    $
+$ data 05/11/94			     $
+$ obj: Help da consulta de baixa de  $
+$ estoque			     $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# tmcbest mcodest
+    Digite   c¢digo do  estoque o qual
+deseja  consultar as suas baixas, caso
+preferir,  tecle <ENTER> e lhe aparece
+r  uma  tabela con os estoques  e seus
+respectivos  c¢digos. Ao selecionar um
+deles,  o   c¢digo   ser    registrado
+automaticamente.
+# fim
+
+$ eof tmcbest.hlp

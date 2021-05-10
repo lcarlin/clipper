@@ -1,0 +1,24 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tm.hlp                         $
+$ data : 05/11/94                    $
+$ objetivo: Ajuda do menu principal  $
+$                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# tm data_sis
+    Verifique a  data e a corrija  se
+for necess rio.
+# fim
+
+# tm nprg
+    Utilize as setas para escolher a
+sua op‡„o e <ENTER> para selecionar.
+# fim
+
+# tm ag
+    Eccolha o tipo do relatorio:
+    [Geral] - Todas as cobran‡as ano-
+tadas na agenda;
+    [Dia Determinado] - Cobran‡as que
+ser„o efetuadas num determinado dia.
+# fim

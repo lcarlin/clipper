@@ -1,0 +1,100 @@
+# cemtped npedido
+  Entre com  o  numero do  pedido, que
+pode ser o numero  da  nota  fiscal de 
+compra.
+  Caso voce  deseje imprimir um pedido
+ja  registrado,  entre com o numero do
+mesmo. Se  nao souber  o numero, tecle
+<ENTER> e uma tabela aparecera com to-
+dos os numeros de pedidos. Para  sele-
+cionar, use as setas de direcao e a te
+cla <ENTER>.
+# fim
+
+# cemtped ddata
+   Entre com a data  em  que o  pedido
+foi  feito.  A  data so sera aceita se
+for  maior  ou igual a data atualizada
+na entrada do Programa.
+# fim
+
+# cemtped ccodigo
+  Entre  com  o  codigo do cliente que
+efetuou o pedido. Se nao souber o  co-
+digo,  pressione   a  tecla  <ENTER> e
+aparecera uma tabela com todos os codi
+gos  de  todos os clientes. Para sele-
+cionar,  utilize as setas de direcao e 
+a tecla <ENTER>.
+
+Obs. Na tela so aparecera o codigo e o
+nome do cliente, mas na nota de pedido
+, sera incluido todos os dados do cli-
+ente.
+   Se o cliente for excluido, nao sera
+possivel  imprimir a sua nota de pedi-
+do.  Caso  os dados do cliente (como o 
+nome) sejam alterados, automaticamente
+serao alterados na nota de pedido.
+# fim
+
+# cemtped ccondi
+   Entre com a condicao  de  pagamento
+do pedido efetuado. Ex  "Preco a vista
+com 30 dias de praso", etc...
+# fim
+
+# cemtped cfazenda
+   Entre com o nome da  fazenda do cli
+ente. Se o cliente  nao  possuir, este
+espaco pode ficar em branco.
+# fim
+
+# cemtped cmunfaz
+   Entre com o nome  do  municipio  em
+que  a  fazenda  esta localizada. Este
+campo pode ficar em branco caso o cli-
+ente nao possua uma fazenda.
+# fim
+
+# cemtped cestfaz
+   Entre com a sigla do estado  em que
+a fazenda esta localizada. Este  campo
+pode ficar em  branco  caso  o cliente
+nao possua uma fazenda.
+# fim
+
+# cemtped dprog_ent
+   Entre com a data progamada  para  a
+entrega do pedido.
+   A data  so   sera   aceita  se  for
+maior que a data atualizada na entrada
+do  programa e for um dia util da sema
+na.
+# fim
+
+# cemtped cobs
+   Neste  espaco  voce pode  descrever
+breve observacoes a  respeito do  cli-
+ente, das condicoes de pagamentos etc.
+O preenchimento deste campo nao e obri
+gatorio.
+# fim
+
+# cemtped crot_faz1
+   Utilize este espaco para descrever
+o caminho utilizado para chegar ate a
+fazenda onde sera entregue o pedido.
+# fim
+
+# cemtped crot_faz2
+   Utilize este espaco para descrever
+o caminho utilizado para chegar ate a
+fazenda onde sera entregue o pedido.
+# fim
+
+# cemtped crot_faz3
+   Utilize este espaco para descrever
+o caminho utilizado para chegar ate a
+fazenda onde sera entregue o pedido.
+# fim

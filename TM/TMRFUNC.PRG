@@ -1,0 +1,106 @@
+**************************************************
+* bop     tmrfunc
+* objetivo= relatorio de funcionarios
+* autores = PAULA, DANI, TON, LU
+* DATA    = 11/10/94
+***************************************************
+SELE 1
+USE TMBCOM
+SELE 2
+USE TMBFUN INDEX TMIFUN
+MCODF= 0
+SOMBRA(08,60,11,74,.F.)
+VAR = 0
+@ 09,61 PROMPT "    VIDEO   "
+@ 10,61 PROMPT " IMPRESSORA "
+MENU TO VAR
+IF LASTKEY()=27
+   CLOSE ALL
+   RETURN
+ENDIF
+SOMBRA(10,15,12,53,.F.)
+@ 11,16 SAY "DIGITE O CODIGO DO FUNCIONARIO:"GET MCODF PICT "9999"
+READ         
+P=1
+if empty(mcodf) .and. lastkey() = 13
+   mcodf=tabela(1)
+ELSEIF LASTKEY() = 27
+   CLOSE ALL
+   RETURN
+ENDIF
+SELE 1
+SET FILTER TO CODF = MCODF
+GO TOP
+IF EOF()
+   SOMBRA(11,20,13,55,.F.)
+   @ 12,21 SAY "ARQUIVO VAZIO!!!"
+   INKEY(3)
+   RELEASE MCODFUN
+   CLOSE ALL
+   RETURN
+ENDIF
+IF VAR = 1
+   NL = 23
+   IMP = .F.
+ELSE
+   IF .NOT. ISPRINTER()
+      SOMBRA(11,20,13,55,.F.)
+      @ 12,21 SAY "IMPRESSORA NAO PREAPARADA"
+      INKEY(4)
+      CLOSE ALL
+      RETURN
+   ENDIF
+   SOMBRA(12,20,14,44,.f.)
+   @ 13,21 SAY "AGUARDE IMPRIMINDO!!!"
+   SET DEVICE TO PRINTER
+   SET CONSOLE OFF
+   IMP = .T.
+   NL = 60
+ENDIF
+P = 1
+L = 7
+CABECALHO("RELATORIO DE COMISSOES DE FUNCIONARIOS",P,IMP)
+@ 6,02 SAY "CODIGO"
+@ 6,09 SAY "NOME DO FUNCIONARIO"
+@ 6,46 SAY "DATA"
+@ 6,56 SAY "VALOR"
+AC=0
+DO WHILE .NOT. EOF()
+   @ L,02 SAY CODF
+   @ L,09 SAY NOMEF
+   @ L,46 SAY DATAC
+   @ L,56 SAY VALOR PICT "999,999.99"
+   AC=AC+VALOR
+   SKIP
+   L = L+1
+   IF L >= NL
+      IF IMP
+         EJECT
+      ENDIF
+      P = P + 1
+      L = 7
+      CABECALHO("RELATORIO DE COMISSOES DE FUNCIONARIOS",P,.T.)
+      @ 6,02 SAY "CODIGO"
+      @ 6,09 SAY "NOME DO FUNCIONARIO"
+      @ 6,46 SAY "DATA"
+      @ 6,56 SAY "VALOR"
+   ENDIF
+ENDDO
+IF IMP
+   @ PROW()+1,00 SAY REPLICATE("=",80)
+   @ PROW()+2,46 SAY "TOTAL ->"
+   @ PROW(),56 SAY AC PICT "999,999.99"
+   EJECT
+   SET DEVICE TO SCREEN
+   SET CONSOLE ON
+ELSE
+   @ ROW()+1,00 SAY REPLICATE("=",80)
+   @ ROW()+1,46 SAY "TOTAL ->"
+   @ ROW(),56 SAY AC PICT "999,999.99"
+   @ ROW()+1,20
+   WAIT "Pressione Algo..."
+ENDIF
+CLOSE ALL
+RETURN
+
+* EOP TMRFUNC.PRG

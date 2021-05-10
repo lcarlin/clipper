@@ -1,0 +1,52 @@
+* bof winclas.doc
+PARA DEFINIR UM NOVO OBJ DE JANELA :
+  oJanela := windowsnew(lse,cse,lid,cid)
+
+  Onde
+  lse = linha superior esquerda
+  cse = coluna superior esquerda
+  lid = linha inferior direita
+  cid = coluna inferior direita
+
+PARA DEFINIR OS ATRIBUTOS DA JANELA :
+  .oJanela:[idAtributo] = [atributo]
+
+  Onde
+  [idAtributo] = border    : caracteres da borda da janela
+                 color     : cor da borda da janela
+                 title     : titulo da janela
+                 coltitle  : cor do titulo da janela
+* obs : a definicao dos atributos e opcional.
+                 /*   operadores internos   */
+                 screen    : tela guardada
+                 top       : lse
+                 left      : cse
+                 bottom    : lid
+                 right     : cid
+
+PARA ABRIR UMA JANELA :
+  .oJanela:OpenWin()
+
+PARA FECHAR UMA JANELA :
+  .oJanela:CloseWin()
+
+* OBS : As janelas devem serem fechadas na ordem inversa que sao abertas para
+nao ocorrer error na recontruao da tela original.
+******************************************************
+Exemplo de Utilizacao
+
+ojan1  :=  windownew(01,01,14,49)  // cria um objeto de janela
+.ojan1:border  := B_SINGLE+chr(178) // prepara a borda
+.ojan1:color    := "w+/r"  // prepara a cor da janela
+.ojan1:title   := "Janela  1"  // prepara o titulo da janela
+.ojan1:coltitle  :=  "w+/bg"  // prepara a cor do titulo da janela
+
+.ojan1:Openwin ()  // abre a janela
+inkey(2)           // aguarda 2 segundos
+
+.ojan1:closewin()  // fecha a janela
+inkey(1)           // aguarda 2 segundos
+
+ para maiores informacoes consulte Micro Sistema N§ 133 Pg 54..60
+
+* eof winclas.doc

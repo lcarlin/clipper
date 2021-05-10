@@ -1,0 +1,29 @@
+# caincag ccodigo
+  Entre com o codigo do cliente    que
+comprou o   produto.
+          Se  nao  souber  o codigo do
+cliente   , tecle <ENTER> e uma tabela
+aparecera  com  todos  os  codigos  de
+todos os clientes.
+# fim
+
+# caincag nvalor
+  Entre com o valor da divida. Caso  a
+divida  seja  paga  em parcelas, entre
+com  o valor da primeira parcela. Apos
+digitada a data voce tera que  respon-
+der  se  deseja continuar na agenda de
+pagamentos,  se  tiver mais parcelas a
+serem pagas, responda [SIM]
+# fim
+
+# caincag ddata
+  Entre com a data do pagamento da di-
+vida  agendada. Se a divida for parce-
+lada, entre com  a data  do vencimento
+da primeira parcela.
+# fim
+
+# caincag ctipo
+  Entre com o tipo da carne vendida
+# fim

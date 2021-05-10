@@ -1,0 +1,20 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmcrest.hlp                    $
+$ data 05/11/94			     $
+$ obj: Help da consulta de baixa de  $
+$ estoque			     $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# tmcrest mcodest
+    Digite c¢digo  do  estoque  o qual
+deseja  consultar  as  suas  entradas, 
+caso  preferir,   tecle  <ENTER> e lhe 
+aparecer   uma  tabela con os estoques
+e   seus   respectivos    c¢digos.  Ao 
+selecionar  um  deles,  o  c¢digo ser  
+registrado automaticamente.
+# fim
+
+$ eof tmcrest.hlp
+
+

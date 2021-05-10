@@ -1,0 +1,53 @@
+*********************************************************
+* bop TMFCD                                             *
+* AUTORES : ANA PAULA, DANIELLE, EVERTON, LUIZ          *
+* OBJETIVO: PERMITIR O FECHAMENTO DIARIO DO CAIXA       *
+* DATA: 28/09/94                                        *
+*********************************************************
+SELE 1
+   USE TMBLCD
+SELE 2
+   USE TMBLMC
+SELE 1
+IF .NOT. CONFIRMA(" DESEJA MESMO REALIZAR O FECHAMENTO DIARIO?")
+    CLOSE ALL
+    RETURN
+ENDIF
+ACD   = 0
+ACC   = 0
+TOTAL = 0
+SUM ALL VALOR TO ACC FOR TIPO = "C"
+SUM ALL VALOR TO ACD FOR TIPO = "D"
+TOTAL = ACC - ACD
+IF TOTAL <> 0
+   IF ACC > ACD
+      MTIPO = "C"
+   ELSE
+      MTIPO = "D"
+      TOTAL = TOTAL *(-1)
+   ENDIF
+ELSE
+   MTIPO = " "
+ENDIF
+SOMBRA(7,20,17,55,.F.)
+@ 08,26 SAY "POSIÄèO ATUAL DO CAIXA"
+@ 10,21 SAY "DEBITO...: " GET ACD   PICT "999,999.99"
+@ 12,21 SAY "CREDITO..: " GET ACC   PICT "999,999.99"
+@ 14,21 SAY "TOTAL....: " GET TOTAL PICT "999,999.99"
+@ 16,21 SAY "SITUAÄèO.: " GET MTIPO
+INKEY(0)
+IF .NOT. CONFIRMA("CONFIRMA FECHAMENTO?")
+    CLOSE ALL
+    RETURN
+ENDIF
+ZAP
+SELE 2
+APPEND BLANK
+REPLACE TOTDIA WITH TOTAL
+REPLACE TIPO   WITH MTIPO
+REPLACE DIA    WITH DATA_SIS
+CLOSE ALL
+clear gets
+RETURN
+
+* eop tmfcd.prg

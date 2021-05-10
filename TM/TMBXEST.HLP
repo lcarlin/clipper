@@ -1,0 +1,19 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmbxest.hlp                    $
+$ data: 05/11/94                     $
+$ objetivo: Help da baixa de estoque $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+                                      
+$ Ajuda das baixas de estoque
+
+# tmbxest mcodest
+    Digite   o   c¢digo  do  estoque
+para efetuar a baixa.
+# fim
+
+# tmbxest mquant
+    Digite   a   quantidade   a  ser
+retirada do estoque.
+# fim
+
+$ eof tmbxest.hlp

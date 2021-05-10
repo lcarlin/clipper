@@ -1,0 +1,7 @@
+.PRG.OBJ:
+CLIPPER $*
+teste.obj  : teste.prrg
+cs002.obj  : cs002.prg
+ 
+rtlink fi teste,cs002 LIB beckner PLL FULBASE
+

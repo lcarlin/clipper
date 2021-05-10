@@ -1,0 +1,50 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmmtest.hlp                    $
+$ data : 05/11/94                    $
+$ objetivo : ajuda da manutencap de  $
+$ estoque                            $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Ajuda da manutencao de estoque.
+
+# tmmtest mcodest
+    Digite o c¢digo do estoque  , caso
+o estoque    n„o  exista,  voce poder 
+incluir um novo com   esse c¢digo.  Se
+voce   n„o  souber   o  c¢digo,  tecle
+<ENTER>  e uma tabela com os c¢digo de
+todos  os  estoques aparecera  e  voce
+podera  escolher   o desejado.
+Para cancelar tecle <ESC>
+# fim
+
+# tmmtest mdesc
+    Digite  a  descri‡„o e/ou nome  do
+novo  estoque.  Se  a   descri‡„o  n„o
+couber no espa‡o, ela pode ser abrevi-
+ada.
+# fim
+
+# tmmtest mquant
+    Digite a  quantidade  recebida  do
+novo produto. O numero m ximo de 4 di-
+gitos.
+# fim
+
+# tmmtest mqtmin
+    Digite  a  quantidade   m¡nima  do
+novo  estoque,  o  n£mero   m ximo  de
+4 digitos.
+# fim
+
+# tmmtest mvalunit
+    Digite  o valor  unit rio  de cada
+item do estoque. Ex: 1.691,63
+# fim
+
+# tmmtest mdatatu
+    Digite a data em que  deu  entrada
+no  novo  estoque ou data a   data  de
+atualiza‡„o de algum outro estoque.
+# fim
+
+$ eof tmmtest.hlp

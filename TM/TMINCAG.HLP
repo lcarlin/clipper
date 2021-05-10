@@ -1,0 +1,35 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmincag.hlp                    $
+$ data : 05/11/94                    $
+$ objetivo: Ajuda da incllusao da    $
+$ agenda .                           $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# tmincag mdta
+    Entre  com   a  data  em  que  foi
+efetuada   a   venda  do  equipamento.
+    Tecle <ENTER>  para aceitar a data
+atual.
+# fim
+
+# tmincag mdes
+    Descreva  o  agendamento. Caso n„o
+caiba  no  espa‡o  reservado para tal,
+pode-se abreviar a descri‡„o
+# fim
+
+# tmincag mvalor
+    Entre  com o valor  a  ser cobrado
+na data que  ser  digitada  posterior-
+mente.
+# fim
+
+# tmincag mdtpg
+    Digite a data futura  em  que ser 
+efetuado  o  pagamento da d¡vida assu-
+mida  pelo  cliente.  Conv‚m  que seja
+feita  uma  verifica‡„o  dessa  data a
+fim de que seja um dia util da semana.
+# fim
+
+$ eof tmincag.hlp

@@ -1,0 +1,25 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmrpest.hlp                    $
+$ data : 05/11/94                    $
+$ obj: Ajuda da reposicao de estoque $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ Ajuda da reposicao de estoque.
+
+# tmrpest mcodest
+    Digite o c¢digo  do  estoque  que
+se deseja efetuar a reposi‡„o.
+# fim
+
+# tmrpest mvalunit
+    Digite   o   valor   unit rio  do
+estoque. Caso deseje alterar,modifique
+o valor.
+# fim
+
+# tmrpest mquant
+    Digite a quantidade recebida. Ela
+ser   automaticamente  somada  com  a
+quantidade atual do estoque.
+# fim
+
+$ epf tmrpest.hlp

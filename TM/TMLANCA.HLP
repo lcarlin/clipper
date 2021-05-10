@@ -1,0 +1,33 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmblanca.hlp                  $
+$ data 05/11/94                     $
+$ objetivo :Ajuda da opcao lancamen-$
+$ to diario                         $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+$ Ajuda da Rotina de lancamentos diarios
+
+# tmlanca mdesc
+    Descreva o lancamento. Ex.:
+- Pagamento de fornecerores;
+- Despesas com Mat. de limpeza;
+- Recebimento de contas;
+- Etc...
+# fim
+
+# tmlanca m_valor
+    Digite o valor do lancamento, Ex:
+- 0,50
+- 1.548,50
+# fim
+
+# tmlanca _op
+    Escolha o tipo do lancamento Ex:
+- Debito = Pagamento de dividas, etc.
+- Credito = Recibo de Servi‡os, Etc..
+- Vales = Pagamento de vales para os
+funcion rios.
+# fim
+
+$ eof tmlanca.hlp
+

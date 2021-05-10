@@ -1,0 +1,166 @@
+#include "def.ch"
+ANNOUNCE CLIPPER501
+/*
+EXTERNAL MOUSE
+EXTERNAL LIGMOUSE
+EXTERNAL DESMOUSE
+EXTERNAL COLMOUSE
+EXTERNAL LINMOUSE
+EXTERNAL BOTAO
+EXTERNAL POSMOUSE
+EXTERNAL AJUSTMOUSE
+*/
+
+FUNCTION MENUBAR(NPOS, NLINHA, NPASSO,sCor, SCOROP, VOPCOES)
+LOCAL NMOUSECOL, NCOL, nTEMP, NCONTROLE, I
+LOCAL STELA, SCORPREVIA, CTECLA
+LOCAL LWRAP, LFLAG
+LOCAL NNUMOPCOES := LEN(VOPCOES)
+LOCAL APOSVALID[NNUMOPCOES][2]
+mInit()
+IF mAvailable()
+   LWRAP      := SET(_SET_WRAP)
+   SCORPREVIA := SETCOLOR()
+   NCOL       := 2
+   SETCOLOR(SCOR)
+   FOR I := 1 TO NNUMOPCOES
+       @ NLINHA, NCOL SAY VOPCOES[I]
+       NTEMP := LEN(VOPCOES[I])
+       APOSVALID[I][1] := NCOL
+       APOSVALID[I][2] := NCOL+NTEmP-1
+       NCOL+=(NTEMP+NPASSO)
+   NEXT
+   STELA := SAVESCREEN(NLINHA,0,NLINHA,79)
+   NCONTROLE := IF((NPOS>0),NPOS,1)
+   SETCOLOR(SCOROP)
+   @ nlinha, APOSVALID[NCONTROLE][1] SAY VOPCOES[nCONTROLE]
+// mLimits(0,NLINHA,NCOL-NPASSO,NLINHA)
+   mLimits(0,0,maxrow(),maxcol())
+   mSetPos(0,0)
+   mOn()
+   CTECLA := 0
+   LFLAG := pFALSE
+   DO WHILE LFLAG <> pTRUE .AND. CTECLA<> pESC .AND. CTECLA <> pENTER
+      CTECLA := INKEY(0)
+      NMOUSE := mYPos()
+      DO CASE
+         CASE mStatusL()
+              FOR I := 1 TO NNUMOPCOES
+                  IF NMOUSECOL>=APOSVALID[I][1] .AND. NMOUSECOL<= APOSVALID[I][2]
+                     LFLAG := pTRUE
+                     NCONTROLE := I
+                     EXIT
+                  ENDIF
+               NEXT
+         CASE cTECLA == pLEFT_ARROW
+              DO CASE
+                 CASE NCONTROLE > 1
+                      NCONTROLE --
+                 CASE NCONTROLE == 1 .AND. LWRAP == pTRUE
+                      NCONTROLE := NNUMOPCOES
+              ENDCASE
+         CASE cTECLA == pRIGHT_ARROW
+              DO CASE
+                 CASE NCONTROLE < 1
+                      NCONTROLE ++
+                 CASE NCONTROLE == NNUMOPCOES .AND. LWRAP == pTRUE
+                      NCONTROLE := 1
+              ENDCASE
+         CASE cTECLA == pESC
+              NCONTROLE := 0
+              LOOP
+         OTHERWISE
+              LOOP
+      ENDCASE
+      mOff()
+      RESTSCREEN(NLINHA,0,NLINHA,79,STELA)
+      @ NLINHA,APOSvalid[NCONTROLE][1] SAY AVOPCOES[NCONTROLE]
+      mOn()
+   ENDDO
+   mOff()
+   SETCOLOR(SCORPREVIA)
+ELSE
+   NCONTROLE := -1
+ENDIF
+RETURN(NCONTROLE)
+
+
+
+
+FUNCTION POPUP (NLINS, NCOLS, SCOR, SCLROP, VOPCOES)
+LOCAL NMOUSELIN, NLINHA, NMAIOR, NTAMANHO, NCONTROLE, NLINI, NCOLI, I
+LOCAL SCORPREVIA, STELA, CTECLA
+LOCAL NNUMOPCOES := LEN(VOPCOES)
+IF mAvailable()
+   LWRAP := (_SET_WRAP)
+   SCORPREVIA := SETCOLOR()
+   NMAIOR := LEN(VOPCOES[I])
+   FOR I := 1 TO NNUMOPCOES
+       NTAMANHO := LEN(VOPCOES[I])
+       IF NTAMANHO > NMAIOR
+          NMAIOR = NTAMANHO
+       ENDIF
+   NEXT
+   NLINI := NLINS+NNUMOPCOES-1
+   NCOLI := NCOLS+NMAIOR
+   SETCOLOR(SCOR)
+   @ NLINS, NCOLS CLEAR TO NLINI, NCOLI
+   @ NLINS-1, NCOLS-1 TO NLINI+1, NCOLI+1
+   FOR I := 1 TO NNUMOPCOES
+       @ NLINS-1+I, NCOLS SAY VOPCOES[I]
+   NEXT
+   STELA := SAVESCREEN(NLINS, NCOLS, NLINI, NCOLI)
+   NCONTROLE := 1
+   NLINHA := NLINS
+   SETCOLOR(SCOROP)
+   @ NLINHA, NCOLS SAY VOPCOES[NCONTROLE]
+   mLimits(NCOLS, NLINS, NCOLI,NLINI)
+   mSetPos(NLINS, NCOLS)
+   mOn()
+   CTECLA := 0
+   LFLAG := pFALSE
+   DO WHILE LFLAG <> pTRUE .AND.  CTECLA<> pESC .AND. CTECLA <> pENTER
+      CTECLA := INKEY()
+      NMOUSELIN := mXPos()
+      DO CASE
+         CASE mStatusL()              
+              IF NMOUSELIN >= NLINS .AND. NMOUSELIN <= NLINI
+                 LFLAG := pTRUE
+                 NLINHA := LINMOUSE
+                 NCONTROLE := NLINHA-NLINS+1
+              ENDIF
+         CASE CTECLA == pDOWN_ARROW
+              DO CASE
+                 CASE NcONTROLE < NNUMOPCOES
+                      NCONTROLE++
+                      NLINHA++
+                 CASE NCONTROLE == NNUNOPCOES .AND. LWRAP == pTRUE
+                      nCONTROLE := 1
+                      NLINHA := NLINS
+              ENDCASE
+         CASE CTECLA == pUP_ARROW
+              DO CASE
+                 CASE NcONTROLE > 1
+                      NCONTROLE--
+                      NLINHA--
+                 CASE NCONTROLE == 1  .AND. LWRAP == pTRUE
+                      nCONTROLE := NNUMOPCOES
+                      NLINHA := NLINI
+              ENDCASE
+         CASE CTECLA == pESC
+              NCONTROLE := 0
+              LOOP
+         OTHERWISE
+              LOOP
+      ENDCASE
+      mOff()
+      RESTSCREEN(NLINS,NCOLS,NLINI, NCOLI, STELA)
+      @ NLINHA, NCOLS SAY VOPCOES[NCONTROLE]
+      mOn()
+   ENDDO
+   mOff()
+   SETCOLOR(SCROPREVIA)
+ELSE
+   NCONTROLE := -1
+ENDIF
+RETURN(NCONTROLE)

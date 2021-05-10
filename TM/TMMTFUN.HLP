@@ -1,0 +1,71 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ BOF TMMTFUN.HLP                   $
+$ DATA 05/11/94                     $
+$ OBJ: AJUDA DA MANUTENCAO DE FUN-  $
+$ CIONARIOS                         $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+$ Ajuda da manutencao de funcionarios
+
+# tmmtfun mcodfun
+    Digite  o  c¢digo  do funcionario,
+caso  o  funcion rio  seja  novo, voce
+poder  incluir-lo com esse c¢digo.  Se
+voce   n„o  souber   o  c¢digo,  tecle
+<ENTER>  e uma tabela com os c¢digo de
+todos os funcionarios aparecera e voce
+podera  escolher   o desejado.
+Para cancelar tecle <ESC>
+# fim
+
+# tmmtfun mcepfun
+    Digite  o  CEP  da  cidade  onde o
+funcionario  reside.  O  CEP  esta  no
+formato de 8 digitos separados por  um
+hifem.
+# fim
+
+# tmmtfun mcidfun
+    Digite o nome da cidade em  que  o
+funcionario mora. Pode-se  abreviar  o
+nome  da  cidade,  caso  n„o  caiba no
+espa‡o  reservado  para  digita‡„o  da
+mesma.
+# fim
+
+
+# tmmtfun menderfun
+    Digite o endere‡o do funcionario.
+O Endere‡o pode ser abreviado.
+# fim
+
+# tmmtfun mestfun
+    Digite as iniciais do estado que o
+funcion rio mora.   S¢ ser  aceito  os
+estados  que  existem   atualmente  no
+Brasil.
+# fim
+
+# tmmtfun mnomefun
+    Digite o nome  do Funcionario.Caso
+o  nome  n„o  caiba  no espa‡o pode se
+abreviar  
+# fim
+
+# tmmtfun mncart
+    Digite  o  n£mero  da  carteira de
+trabalho do funcoin rio.
+# fim
+
+# tmmtfun mtelfun
+    Digite  o  n£mero  do telefone  do
+funcion rio. Caso o ele  n„o possua um
+pode-se  deixar  em   branco.  
+# fim
+
+# tmmtfun mcargo
+    Digite  a   descri‡„o  do  cargo do
+que o funcion rio exerce.
+# fim
+
+$ eof tmmtfun.hlp

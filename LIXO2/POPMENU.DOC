@@ -1,0 +1,26 @@
+* popmenu.doc
+SET MENU COLORS TO  <cor1> , <cor2>, <cor3>
+   ONDE :
+     <cor1> = cor da borda
+     <cor2> = cor das opcoes primarias
+     <cor3> = cor das opcoes secundarias
+ 
+SET MENU BORDER TO <borda>
+   onde :
+     <borda> = caracters para fazer a borda do menu
+* obs : estes dois comandos sao opcionais
+ 
+@ <l>, <c> OPTION <par1> WITH <par2>
+   ONDE:
+   <l> = linha onde o menu principal sera colocado
+   <c> = coluna onde o menu principal sera colocado
+   <par1> = titulo do menu porincipal
+   <par2> = vetors com as opcoes do menu principal (opcional)
+ 
+POPUP TO <varmen>
+  ONDE :
+     <varmem> = variavel que contera a opcao seleccionada.
+     obs : se for selecionada a opcao 3 do segundo menu, sera retornado o
+      valor 23
+* eop popmenu.doc
+

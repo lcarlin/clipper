@@ -1,0 +1,30 @@
+# ceincag ccodigo
+  Entre com o codigo do fornecedor que
+vendeu  o   produto   que   entrou  no
+estoque.  Se  nao  souber  o codigo do
+fornecedor, tecle <ENTER> e uma tabela
+aparecera  com  todos  os  codigos  de
+todos os fornecedores.
+  Caso  esta  seja  uma  unica  compra
+deste fornecedor,  e voce nao pretenda
+comprar mais dele, ou seja o pagamento
+de uma divida pessoal, entre com o  co
+digo XXXXXX
+# fim
+
+# ceincag nvalor
+  Entre com o valor da divida. Caso  a
+divida  seja  paga  em parcelas, entre
+com  o valor da primeira parcela. Apos
+digitada a data voce tera que  respon-
+der  se  deseja continuar na agenda de
+pagamentos,  se  tiver mais parcelas a
+serem pagas, responda [SIM]
+# fim
+
+# ceincag ddata
+  Entre com a data do pagamento da di-
+vida  agendada. Se a divida for parce-
+lada, entre com  a data  do vencimento
+da primeira parcela.
+# fim

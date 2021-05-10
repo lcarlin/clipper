@@ -1,0 +1,45 @@
+# botao opbotao
+  Utilize  as  setas  de  Direcao para
+mudar o  botao corrente e <ENTER> para
+selecionar a opcao desejada
+# fim
+
+# obser
+Esse espaco e utilizado para descrever
+observacoes sobre o cliente/fornecedor
+    Utilize  as  teclas  de navegacao:
+<SETA-PARA-DIREITA>,  para ir  para  a
+direita, <SETA-PARA-ESQUERDA> esquerda
+para    ir    para    a    esquerda  ,
+<SETA-PARA-BAIXO>,  para  descer  uma
+linha,  <SETA-PARA-CIMA>,  para subir
+uma  linha ,  <PgUp>, para subir  uma
+pagina, <PgDn> para descer uma pagina.
+# fim
+
+# tabela
+   Escolha  o codigo desejado  atraves
+das  setas  de direcao e  pressione  a
+tecla <ENTER> para assumir o codigo.
+# fim
+
+# reajuste nporcen
+  Digite  a  o valor da porcentagem  a
+ser     reajustada    no(s)   item(s)
+selecionado(s)
+# fim
+
+# cons_agd dmes
+  Entre com o mes que voce deseja que
+seja  pesquisado  a   existencia   de
+dividas agendadas. Para limpar a pes
+quisa. tecle <ENTER> duas vezes
+# fim
+
+# cons_agd dano
+  Entre com o ano que voce deseja  que
+seja   pesquisado   a   existencia  de
+dividas agendadas. Para limpar  a  pes
+quisa, tecle <ENTER> uma vez
+# fim
+

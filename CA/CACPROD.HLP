@@ -1,0 +1,40 @@
+# cacprod cdesc
+   Entre com a descricao do produto
+comprado.
+# fim
+
+# cacprod cproced
+   Entre com a procedencia (origem)
+do produto comprado.
+# fim
+
+# cacprod ddatac
+   Entre com a data em que o produto 
+foi comprado. Automaticamente e apre-
+sentada a data atualizada, se for es
+ta, tecle <ENTER>.
+# fim 
+
+# cacprod ndiaspra
+   Entre com os dias de prazo de paga
+mento da mercadoria comprada.
+# fim  
+
+# cacprod ddataven  
+ Entre com a data de vencimento do
+pagamento da compra 
+# fim
+
+
+# cacprod narrobas
+  Entre com a quantidade de arrobas
+/kilos comprados .
+# fim  
+
+# cacprod nvlarroba 
+  Entre com o valor da arroba/kilo
+# fim
+ 
+# cacprod nval_tot
+  Entre com o valor total da compra.
+# fim

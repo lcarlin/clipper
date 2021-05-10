@@ -1,0 +1,38 @@
+#
+#  Gerenciamento de Contrucoes e Producao v1.0á
+#  Copyright (c) CAOS TechnoSoft, Inc. 1993.
+#  All Right Reserved.
+#
+#  Program.: SCC.LNK
+#  Purpose.: Blinker reference for make executable.
+#
+#  Hackers.: Rogen Alexandre da Silva Cardim
+#
+#  Linguage: Clipper 5.2
+#            Copyright (c) 1985-1993 Computer Associates International.
+#            All Rights Reserved.
+#
+
+blinker demonstration date 1994/04/01
+blinker executable serial CAOS TechnoSoft, Ltd.
+blinker executable clipper F:100;NOIDLE;DYNF:8;BADCACHE;SWAPK:65535
+blinker incremental off
+blinker overlay pageframe on
+
+dosseg
+mixcase
+
+output SCC
+
+search ROOTVM
+
+beginarea
+   file SCC
+   file ERRORSYS
+   lib CAOS
+   lib FUNCky51, FUNCkyVM, FUNCky2c
+   lib EXTEND
+endarea
+
+lib CLIPPER, DBFNTX, TERMINAL
+

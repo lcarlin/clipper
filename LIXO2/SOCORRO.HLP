@@ -1,0 +1,52 @@
+                     Help Ao Usu rio
+	        
+       Dici -> Pequeno Dicion rio De Ingles ; û 1.0
+			         
+                  Informa‡”es Gerais:
+
+ O Programa  Constituido Por Seis M¢dulos Principais:
+
+ Modulo 1: Palavras
+ Neste M¢dulo Voce Encontrar  dois itens: 
+ 1-Manuten‡„o  
+ Rotina Respons vel Pela Inclus„o, Exclus„o e Altera‡„o 
+ 2-Consulta 
+ Rotina	Respons vel Pelas Consultas         
+ Os M¢dulos Verbos E Express”es Tamb‚m S„o Compostos Por 
+ Essas Rotinas.
+
+ M¢dulo-2 Verbos; 
+
+ M¢dulo-3 Express”es; 
+
+ M¢dulo-4 Utilit rio
+ Neste Modulo Vocˆ ter  As Seguintes Op‡”es :
+ 1- Manuten‡„o de Senhas -> Programa que inclui/exclui
+ senhas de acesso ao sistema                           
+ 2- Espa‡o de Disco -> Pequena Rotina Que verifica O    
+ N£mero De MBytes livres no Winchester ou nos drives A:
+ E B:      
+ 3- Roda Dos -> Processador de Comandos Do Sistema Ope-
+ racional.
+ 4- Anota‡”es -> Pequeno editor De Textos Que visa o re-
+ gitros de anota‡”es no disco;
+
+ M¢dulo-5 Help :
+ Este Modulo!!!
+
+ M¢dulo-6 Sair
+ Rotina Respons vel Pelo Fechamento Dos Arquivos e Devol-
+ ver o Controle ao Sistema Operacional
+
+
+                Teclas De Fun‡”es
+
+  O Funcionamento do Sistema Ainda e Constitudo Pelo
+ Acionamento de Algumas Teclas De Fun‡”es:
+   <F1> = Help  On-Line
+   <F2> = Modos (Ingles/Portugues ou Portugues/Ingles)
+   <F3> = Imprime Arquivos de Palavras, Verbos, Expres-
+          s”es Conforme  O Modo <Ing/Por Por/Ing>
+   <F4> = Consulta R pida de Palavras, Verbos, Expres-
+          s”es
+   <ESC> = Sair Do Sistema e Retornar Para O DOS

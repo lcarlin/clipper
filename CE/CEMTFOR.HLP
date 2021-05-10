@@ -1,0 +1,71 @@
+# cemtfor ccod
+  Neste espaco, voce devera digitar  o
+codigo  do  fornecedor.  Caso voce nao
+saiba, tecle  <ENTER>  e   uma  tabela
+com   todos  os  codigos  de  todos os
+fornecedors  aparecera  e  voce podera  
+escolher o desejado pressionando,   
+<ENTER> no cogido desejado.
+# fim
+
+# cemtfor cnome
+   Neste local, voce devera digitar  o
+nome  do  fornecedor, o nome pode  ter 
+ate  40  letras.  Se  o fornecedor for 
+uma  firma,  coloque  o nome da firma.
+# fim
+
+# cemtfor crg
+   Digite o numero do R.G. do  fornece
+dor.  Se o fornecedor  for uma  firma,
+este campo pode ficar em branco.
+# fim
+
+# cemtfor ccpf
+   Digite  o   numero   do  C.P.F.  do
+fornecedor.  Se o  fornecedor for  uma
+firma,este campo  pode ficar em branco.
+# fim
+
+# cemtfor cince
+   Digite  o   numero   da   Inscricao
+Estadual do fornecedor,  caso  o mesmo 
+seja uma firma.  Se  o  fornecedor nao
+for  uma  firma, este campo pode ficar 
+em branco. 
+# fim
+
+# cemtfor cende
+   Entre com o Endereco do  fornecedor 
+o endereco pode  ser   residencial  ou 
+comercial.
+# fim
+
+# cemtfor ccid
+   Entre  com  o  nome  da  cidade  em
+que o fornecedor reside.
+# fim
+
+# cemtfor cest
+   Entre com as iniciais do estado  em
+que o fornecedor mora. So sera aceitos
+estados existentes.
+# fim
+
+# cemtfor ctel
+   Entre com o numero do  telefone  ou
+fax  do  fornecedor. Caso o fornecedor 
+nao  possua   telefone   ou fax,  este 
+campo pode ficar em branco.
+# fim
+
+# cemtfor ccep
+   Entre com o C.E.P. da cidade do for
+necedor.
+# fim
+
+# cemtfor cempre
+   Entre  com  o nome da empresa  para
+qual o fornecedor trabalha ou represen
+ta.
+# fim

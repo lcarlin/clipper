@@ -1,0 +1,68 @@
+Relacao das funcoes da biblioteca cs002.lib
+
+Sombra(lse,cse,lid,cid)
+Deseha uma borda com a cor atual nas coordenadas especificas e
+desenha uma sombra
+
+
+Shadow(lse,cse,lid,cid)
+Desenha uma sombra nas coordenadas da tella
+
+
+Confirma(texto, [CorMensagem], [CorBotao])
+Pede confirmacao sobre a mensagem em <texto> e Retorna valores logicos
+ .t. se a opcao foi sim e .f. se a opcao foi nao
+  CorMensagem  parametro opcional que define a cor da mensagem
+  corBotao     parametro opciona que define a Cor dos Botoes
+
+
+Mensagem(texto, [CorMensagem], [CorBotao])
+Mostra a Mensagem<texto> na tela e espera pela tecla <ENTER>
+  CorMensagem  parametro opcional que define a cor da mensagem
+  corBotao     parametro opciona que define a Cor dos Botoes
+
+BOTAO(aOpc, [lAtiva], [cCorIna], [cCorAt])
+Constroi botoes especificados em <aOpc> que e' um array de <n> linhas por
+3 colunas onde as 2 primeiras colunas sao as coordenadas da mensagem
+e a terceira coluna e a mensagem. O valor retornado e' o numero da opcao
+selecionada
+      [lAtiva]  valor logico, se Verdadeiro permite a selecao, se falso
+               so  mostra os botoes na tela
+      [cCorIna]  cor do botao inativo
+      [cCorAt]   Cor do botao Ativo
+
+corfundo()
+Funcao que determinda a o codigo da cor de fundo
+
+verisenha(string)
+funcao que codifica (string) metodo - 1
+
+seguran(L,c)
+Permite a digitacao de senha sem que terceiros a vejam; Retorno: caracteres
+digitados
+
+manutsen()
+Permite  alteracao da senha codifida contido no arquivo cs.mem
+
+ExistSenha
+verifica se a senha digitada confere com a exitente no arquivo cs.mem
+
+centra(linha,texto,[cor])
+Mostra o <texto> centralizado na <linha> com a cor especificada em [cor]
+
+diautil(data)
+Verifica se a <data> e um dia util, se positivo, retorna valor logico .t.
+
+estados(variavel)
+verifica se a sigla do estado contido em <variavel> e' real
+
+calculad(lina,coluna,cor)
+controi uma calculadora nas coordenadas especificadas, com a <cor> desejada
+
+cent_imp(linha texto)
+centraliza um <texto> na <linha> da impressora
+
+verimouse()
+verifica se o driver do mouse esta instalado.
+
+

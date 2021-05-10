@@ -1,0 +1,23 @@
+# calanca cdesc
+  Entre com a descricao do lancamento
+diario do caixa. O tipo do lancamento
+sera pedido apos ser digitado o valor.
+Os tipos podem ser :
+
+  [Debito] :Se for algum tipo de paga-
+mento. Ex. pagamento de funcionarios.
+
+   [Credito] : Se  for algum  tipo  de
+recebimento. Ex. recebimento de servi-
+cos prestados.
+
+   [Cancelar] :  Cancela a  operacao e
+retorna  ao  inicio, onde voce  devera
+digitar  a descricao do lancamento.
+# fim
+
+# calanca nvalor
+ Entre com  o valor do lancamento des-
+crito no campo "Lancamento.."
+# fim
+

@@ -1,0 +1,1715 @@
+***************************************
+USE ESCOLA INDEX INX2
+CLEAR
+CONT="S"
+DO WHILE UPPER(CONT)="S"
+   @ 0,0,24,79 BOX CHR(127)+CHR(176)+chr(127)+CHR(176)+CHR(127)+CHR(176)+CHR(127)+CHR(176)
+   SET COLOR TO  N/W
+   centra(00,"CADASTRO/MANUTENCAO DE ESCOLAS")
+   centra(24,"<F3>-Imprime Codigos De Escolas")
+   SET COLOR TO W/N
+   STORE SPACE(8) TO MCODE
+   @ 04,02 SAY "CODIGO.......:"
+   @ 06,02 SAY "ESCOLA.......:"+SPACE(38)
+   @ 08,02 SAY "LOCALIDADE...:"+SPACE(42)
+   centra(23,"Digite o codigo, <ENTER> p/ a tabela ou <ESC> p/ sair")
+   USE ESCOLA INDEX INX2
+   DO WHILE EMPTY(MCODE)
+      @ 04,17 GET MCODE PICTURE "@!"
+      READ
+      IF LASTKEY()=27
+         CLOSE DATABASES
+         CLEAR
+         RETURN
+      ELSEIF Lastkey()=13
+         TABELA(2)
+         @ 04,17 GET MCODE PICTURE "@!"
+         CLEAR GETS
+      ENDIF
+   ENDDO
+   @ 22,02 clear to 23,78
+   ALTER="R"
+   SEEK MCODE
+   IF FOUND()
+      MESCOLA = ESCOLA
+      MLOCAL = LOCAL
+      @ 06,17 GET MESCOLA PICTURE "@!"
+      @ 08,17 GET MLOCAL PICTURE "@!"
+      CLEAR GETS
+      @ 21,10 SAY "Codigo existente, <R>retorna; <A>altera; <E>exclui ?" GET ALTER PICTURE "!A"
+      READ
+      @ 21,10 SAY "                                                                 "
+      IF ALTER<>"E" .AND. ALTER<>"A"
+         LOOP
+      ENDIF
+      IF ALTER="E"
+         CERT="N"
+         @ 21,15 SAY "ESTE REGISTRO SERA EXCLUIDO!! TEM CERTEZA <S/N> " GET CERT PICTURE "!A"
+         READ
+         @ 21,15 SAY "                                                        "
+         IF CERT="S"
+            DELETE
+            PACK
+            LOOP
+         ENDIF
+      ENDIF
+   ELSE
+      CERT="S"
+      @ 21,15 SAY "Codigo novo; deseja cadastrar <S/N> " GET CERT PICTURE "!A"
+      READ
+      @ 21,15 SAY "                                          "
+      IF CERT="N"
+         LOOP
+      ENDIF
+      MESCOLA   = SPACE(35)
+      MLOCAL  = SPACE(40)
+      @ 06,17 GET MESCOLA PICTURE "@!"
+      @ 08,17 GET MLOCAL PICTURE "@!"
+      READ
+      CLEAR GETS
+   ENDIF
+   RESPI="N"
+   @ 21,15 SAY "Os Dados Estao Corretos <S/N> ? " GET RESPI PICT "!"
+   READ
+   @ 21,15 SAY "                                           "
+   DO WHILE UPPER(RESPI)="N" .AND. ALTER<>"E"
+      @ 06,17 GET MESCOLA PICTURE "@!"
+      @ 08,17 GET MLOCAL PICTURE "@!"
+      READ
+      CLEAR GETS
+      @ 21,15 SAY "Os dados estao corretos<S/N> ? " GET RESPI PICTURE "!"
+      READ
+      @ 21,15 SAY "                                      "
+   ENDDO
+   IF ALTER<>"E"
+      IF ALTER<>"A"
+         APPEND BLANK
+      ENDIF
+      USE ESCOLA INDEX INX2
+      REPLACE ESCOLA WITH MESCOLA
+      REPLACE LOCAL WITH MLOCAL
+      REPLACE CODESCO WITH MCODE
+   ENDIF
+   @ 21,15 SAY "Quer continuar <S/N> ? " GET CONT  PICTURE "!"
+   READ
+ENDDO
+CLOSE DATABASES
+CLEAR
+RETURN
+MCODESCO=SPACE(08)
+USE MOVIME INDEX INX3
+DO WHILE .T.
+   CLEAR
+   @ 0,0,24,79 BOX "∞∞∞∞"
+   USE MOVIME INDEX INX3
+   MCODESCO=SPACE(08)
+   SET COLOR TO N/W
+   centra(0,"CONSULTA DE BAIXAS")
+   centra(24,"<F4>-Consulta Geral")
+   SET COLOR TO W/N
+   MCODESCO=SPACE(08)
+   @ 04,15 to 08,64 DOUBLE
+   @ 11,09 clear to 17,40
+   centra(05,"Entre c/ o Codigo da Escola, <ENTER> p/ a tabela")
+   centra(06,"ou <ENTER> para sair :")
+   do while empty(mcodesco)
+      @ 07,35 GET MCODESCO PICTURE "@!"
+      READ
+      IF empty(MCODESCO) .and. lastkey()=27
+         CLOSE DATABASES
+         CLEAR
+         RETURN
+      elseif lastkey()=13 .and. empty(mcodesco)
+         use escola index inx2
+         tabela(2)
+         @ 07,35 GET MCODESCO PICTURE "@!"
+      ENDIF
+   enddo
+   USE MOVIME INDEX INX3
+   GOTO TOP
+   LOCATE FOR CODESCO=MCODESCO
+   IF .NOT. FOUND()
+      centra(09,"Escola nÑo cadastrada")
+      centra(10,"Ou sem movimentacoes; tecle <ENTER>")
+      INKEY (0)
+      @ 09,15 CLEAR TO 10,50
+      LOOP
+  ENDIF
+  CLEAR
+  @ 0,0,24,79 BOX "∞∞∞∞"
+  SET COLOR TO N/W
+  centra(00,"Consulta de baixas")
+  SET COLOR TO W/N
+  @ 01,01 TO 23,78 DOUBLE
+  PAG=1
+  LIN=4
+  @ 03,03 SAY "PAG. "+STR(PAG,3,0)
+  @ LIN+1,5 SAY "Escola : "+ESCOLA
+  @ LIN+2,4 SAY "DATA    "+ "   MATERIAL"+SPACE(40)+"QTDE "
+  TOTAL=0
+  DO WHILE MCODESCO=CODESCO
+     @ LIN + 3,04 SAY DATA
+     @ LIN + 3,14 SAY MATERIAL
+     @ LIN + 3,62 SAY QTDENDTR
+     LIN=LIN+1
+     CONTINUE
+     DO WHILE LIN >= 20
+        LIN=4
+        centra(23,"Pressione algo p/ continuar")
+        inkey (0)
+        @ 07,04 clear to 22,75
+        PAG=PAG+1
+        @ 03,03 SAY "PAG. "+STR(PAG,3,0)
+     ENDDO
+  ENDDO
+  @ LIN+5,04 SAY REPLICATE ("#",70)
+  centra(lin+7,"Pressione algo p/ continuar")
+  INKEY(0)
+  clear
+ENDDO
+CLOSE ALL
+CLEAR
+SAVE SCREEN TO TELA_DOS
+clear typeahead
+ARQ=DBF()
+set deleted off
+LIN=ROW()
+COLU=COL()
+clear
+PUBLIC CMAT, INDICE, procura
+use movime
+GOTO TOP
+DECLARE MCAMP[10]
+ MCAMP[1]  =  "CODESCO"
+ MCAMP[2]  =  "ESCOLA"
+ MCAMP[3]  =  "CODMAT"
+ MCAMP[4]  =  "MATERIAL"
+ MCAMP[5]  =  "DATA"
+ MCAMP[6]  =  "NTDOC"
+ MCAMP[7]  =  "QTDENDTR"
+ MCAMP[8]  =  "QTDSAL"
+ MCAMP[9]  =  "VALENTR"
+ MCAMP[10] =  "VALSAL2"
+
+DECLARE MMASC[10]
+ MMASC[1]  =  "@!"
+ MMASC[2]  =  "@!"
+ MMASC[3]  =  "@!"
+ MMASC[4]  =  "@!"
+ MMASC[5]  =  "99/99/99"
+ MMASC[6]  =  "@!"
+ MMASC[7]  =  "99999"
+ MMASC[8]  =  "99999"
+ MMASC[9]  =  "999999,999.99"
+ MMASC[10] =  "999999,999.99"
+
+DECLARE MCAB[10]
+ MCAB[1]  =  "COD.ESC"
+ MCAB[2]  =  "ESCOLA"
+ MCAB[3]  =  "COD.MAT"
+ MCAB[4]  =  "MATERIAL"
+ MCAB[5]  =  "DATA"
+ MCAB[6]  =  "NOTA"
+ MCAB[7]  =  "QT.ENT"
+ MCAB[8]  =  "QT.SAL"
+ MCAB[9]  =  "VL.ENT"
+ MCAB[10]  = "VL.SAL"
+
+
+CLOSE ALL
+
+USE MOVIME
+@ 00,00,24,79 BOX CHR(127)+CHR(176)+CHR(127)+chr(176)+chr(127)+chr(176)+chr(127)+chr(176)
+set color to n/w
+@ 00,25 SAY "Consula Geral"
+set color to w/n
+@ 3,5 SAY "<DEL>Exclui; <ESC>Sai  Arquivo : "+DBF()
+SET COLOR TO BW+/W
+@ 22,1 SAY CHR(17)
+@ 22,76 SAY CHR(16)
+@ 5,77 SAY CHR(30)
+@ 21,77 SAY CHR(31)
+SET COLOR TO
+@ 22,3 say "<F5>                     ∫ <F6>                       ∫ <F10>"
+@ 23,3 say "Filtra Codigos De Escolas∫ Filtra Codigos De Materiais∫ Filtra Materiais"
+DBEDIT(5,5,20,73,MCAMP,"EDITAR",MMASC,MCAB,.t.,.t.,.t.)
+*DBEDIT(5,5,20,73,MCAMP,"EDITAR",MMASC,MCAB,CHR(196),CHR(179),chr(196))
+CLOSE ALL
+IF .NOT. EMPTY(ARQ)
+   USE &ARQ
+ENDIF
+set cursor on
+set deleted on
+RESTORE SCREEN FROM TELA_DOS
+@ LIN,COLU SAY""
+
+*********************************************
+FUNCTION EDITAR
+PARAMETER STATUS
+INDICE=1
+TECLA=LASTKEY()
+CMAT=SPACE(1)
+PRIVATE TECLA,
+@ 4,5 SAY ALLTRIM(STR(RECNO(),6,0))+"/"+ALLTRIM(STR(RECCOUNT(),6,0))+"  Pos. Relat.   "
+*@ 6,5 TO 20,73
+IF .NOT. DELETED()
+   @ 4,60 SAY "        "
+ELSE
+   @ 4,60 SAY "DELETADO"
+ENDIF
+IF STATUS=4
+  IF TECLA=7
+      IF .NOT. DELETED()
+         DELE
+         @ 4,60 SAY "DELETADO"
+         RETURN 1
+      ELSE
+         RECALL
+         @ 4,60 say "        "
+         RETURN 1
+      ENDIF
+   ELSEIF TECLA=-4
+      TELADB=SAVESCREEN(10,10,18,30)
+      PROCURA=SPACE(8)
+      SET CURSOR ON
+      @ 21,18 SAY "Codigo Da Escola : " get PROCURA PICT "@!"
+      READ
+      SET CURSOR OFF
+      @ 21,18 SAY "                             "
+      IF EMPTY(PROCURA)
+         RETURN 1
+      ENDIF
+      set filter to codesco=procura
+      GOTO TOP
+      @ 21,52 SAY "<F9>-Limpa O Filtro"
+      return 2
+   ELSEIF TECLA=-5
+      PROCURA = SPACE(15)
+      SET CURSOR ON
+      @ 21,18 SAY "Codigo Do Material : " get procura picture "@!"
+      read
+      set cursor off
+      @ 21,18 say "                                  "
+      if empty (procura)
+         return 1
+      endif
+      set filter to codmat=procura
+      GOTO TOP
+      @ 21,52 SAY "<F9>-Limpa O Filtro"
+      RETURN 2
+   ELSEIF TECLA=-9
+      SET CURSOR ON
+      @ 21,18 SAY "3 Letras Do Material : " get CMAT PICT "!"
+      READ
+      @ 21,18 SAY "                                 "
+      IF EMPTY(CMAT)
+         SET CURSOR OFF
+         RETURN 1
+      ENDIF
+      SET FILTER TO MATERIAL=CMAT
+      GOTO TOP
+      @ 21,52 SAY "<F9>-Limpa O Filtro"
+      SET CURSOR OFF
+      return 2
+   elseif TECLA=-8
+      SET FILTER TO
+      @ 21,52 SAY "                    "
+      RETURN 2
+   ELSEIF TECLA=27
+      RETURN 0
+   ENDIF
+ELSEIF STATUS=3
+   @ 4,30 SAY "Arquivo Vazio"
+   inkey (.9)
+   @ 4,30 SAY "             "
+   return 1
+ELSEIF STATUS=2
+  @ 4,30 SAY "Final Do Arquivo"
+  inkey(.9)
+  @ 4,30 SAY "                "
+  return 1
+ELSEIF STATUS=1
+  @ 4,30 SAY "Inicio Do Arquivo"
+  inkey (.9)
+  @ 4,30 SAY "                 "
+  return 1
+ELSEIF STATUS=0
+  RETURN 1
+ENDIF
+***************************************************************
+* PROGRAMA     : ESTO.PRG                                     *
+* AUTOR        : LUIZ A. CARLIN                               *
+* DATA         : 15/10/93                                     *
+* DATA ATUAL   :   /  /                                       *
+* FUNCAO       : DAR ACESSO A PROGRAMAS SOMENTA COM SENHA     *
+*                                                             *
+***************************************************************
+SETCANCEL(.T.)
+if pcount()=1
+   parameters teste
+else
+   teste="0"
+endif
+PUBLIC FLAG , MSX1 , FLG2 , TEL_0 , COLUNA , LINHA
+LINHA=ROW()
+COLUNA=COL()
+SAVE SCREEN TO TEL_0
+SET SCORE OFF
+if .not. file("inx1.ntx")
+    clear
+    ? "Indexando arquivo de Materiais"
+    USE MATERIAL
+    INDEX ON CODMAT TO INX1
+    close all
+endif
+if .not. file ("inx2.ntx")
+   ? "Indexando arquivo de Escolas"
+   USE ESCOLA
+   INDEX ON CODESCO TO INX2
+   close all
+endif
+if .not. file ([inx3.ntx])
+   ?"Indexando arquivo de Baixas"
+   USE MOVIME
+   INDEX ON CODMAT+CODESCO TO INX3
+   INDEX ON DATA TO INX4
+   close all
+endif
+if .not. file ([senha.mem])
+   do tela
+else
+   CLEAR
+   @ 01,19 TO 06,46 DOUBLE
+   @ 02,20 SAY "Digite o codigo de acesso"
+   @ 03,25 SAY "ou <ENTER> P/ Sair"
+   sen_=SEGURAN(5,27)
+   restore from senha additive
+   if empty(sen_)
+      CLEAR
+      QUIT
+   ENDIF
+   IF sen_=senha_mem
+      CLEAR
+      SET INTEN ON
+      if teste="1"
+         DO menu
+      endif
+      do tela
+      CANCEL
+   ELSE
+      CLEAR
+      ?"Senha Inv†lida"
+      ?"Acesso negado"
+      ?"Retorno Normal Ao DOS"
+   ENDIF
+ENDIF
+*********************************************************
+*
+*
+*
+*
+*
+*
+*
+*****************************************
+set inten off
+use codes index codx
+@ 11,25,19,77 BOX CHR(176)
+sen=space(10)
+@ 10,24 CLEAR TO 18,76
+@ 10,24 TO 18,76
+@ 10,30 say "ExclusÑo de Baixas"
+@ 11,25 SAY "Digite A Senha Ou <ENTER> P/ Sair"
+sen=seguran(12,26)
+if empty(sen)
+   return
+endif
+restore from senha additive
+if sen<>senha_mem
+   @ 13,28 say "Senha Invalida!!"
+   inkey (.9)
+   set inten on
+   return
+endif
+DO WHILE .T.
+   @ 13,25 clear to 16,70
+   MCODMAT=SPACE(15)
+   SET INTEN ON
+   use movime index inx3
+   @ 13,25 SAY "Digite o Codigo do Material: "GET MCODMAT PICT "@!"
+   @ 14,25 SAY "Ou <ENTER> P/ Sair"
+   READ
+   SAVE SCREEN TO TELA6A
+   set intensity on
+   IF MCODMAT=SPACE(15)
+      SET INTEN ON
+      EXIT
+   ENDIF
+   USE MOVIME INDEX INX3
+   SEEK MCODMAT
+   IF .NOT. FOUND()
+       @ 15,40 SAY "NÑo Encontrado; tecle <ENTER>"
+       INKEY (0)
+       loop
+   ENDIF
+   CERT="N"
+   @ 15,25 SAY "Material: "+alltrim(material)
+   @ 16,25 SAY "Tem Certeza <S/N>? " GET CERT PICT "!"
+   READ
+   IF CERT="N"
+      loop
+   ENDIF
+   USE MOVIME INDEX INX3
+   DELE FOR CODMAT=MCODMAT
+   PACK
+ENDDO
+**********************************************
+*
+*
+*
+*
+*
+
+SELE 1
+ USE MATERIAL INDEX INX1
+SELE 2
+ USE MOVIME INDEX INX3
+SELE 3
+ USE MOVIME INDEX INX4
+GOTO TOP
+DO WHILE .T.
+   clear
+   SELE 2
+   goto top
+   @ 0,0,24,79 BOX "∞∞∞∞"
+   SET COLOR TO N/W
+   centra(00,"EMISSéO DE RELATORIOS")
+   SET COLOR TO W/N
+   MCODMAT=SPACE(15)
+   @ 04,12 to 08,67 DOUBLE
+   @ 11,19 clear to 17,40
+   centra(05,"Entre c/ o Codigo do Material, <ENTER> p/  a tabela ou")
+   centra(06, "<ESC> p/ sair")
+   do while empty(mcodmat)
+      @ 07,25 GET MCODMAT PICTURE "@!"
+      READ
+      IF MCODMAT=SPACE(15) .and. lastkey()=13
+         select 1
+         tabela(1)
+         @ 07,25 GET MCODMAT PICTURE "@!"
+      elseif lastkeY()=27
+         CLOSE DATABASES
+         CLEAR
+         RETURN
+      endif
+   enddo
+   select 2
+   SEEK MCODMAT
+   IF .NOT. FOUND()
+      centra(10,"Material nÑo cadastrado")
+      centra(11,"Ou sem baixas; tecle <ENTER>")
+      INKEY (0)
+      @ 10,09 CLEAR TO 12,60
+      LOOP
+   ENDIF
+   IMP="S"
+   @ 09,10 SAY "Material : " + material
+   @ 11,10 SAY "Imprime Relatorio <S/N> " GET IMP PICT "!"
+   READ
+   IF IMP="S"
+       IF ISPRINTER()
+         set color to w*/n
+          centra(15,"Imprimindo...")
+          set color to
+          SET CONS OFF
+          SET DEVICE TO PRINTER
+          MTOT=0
+          @ 00,49 SAY "Relatorio de Baixas"
+          PAG=1
+          LIN=2
+          SELE 1
+          locate for CODMAT=MCODMAT
+          SEEK MCODMAT
+          @ 02,03 SAY "PAG. "+STR(PAG,3,0)
+          @ LIN + 1,05 SAY "Material: " + RTRIM(MATERIAL)
+          @ LIN + 1,70 SAY "Classificacao : "+class
+          @ LIN + 1,100 SAY "Uni: " + RTRIM(UNIDADE)
+          @ LIN + 2,05 SAY "Qtd. Entreg: "+ALLTRIM(STR(QTDRECEB,5,0))
+          @ LIN + 2,30 SAY "Val. Receb: "
+          @ LIN + 2,43 SAY VALENT PICT "999999,999.99"
+          @ LIN + 2,75 SAY "Val. Unit.: "
+          @ LIN + 2,88 SAY VALUNIT PICT "999999,999.99"
+          @ LIN + 3,05 SAY "Datas:"+ DTOC(DATAEN)+ "  "+DTOC(DATAEN2)
+          @ LIN + 3,35 SAY "Procedencia: "+ PROCED
+          @ LIN + 3,80 SAY "Notas de entrega: "+ NDOC
+          @ LIN + 5,01 SAY "DATA"+"     NOTA "+  "         DESTINO              "+ space(18)+"QT/SAI "+"  QT/SAL"+"         VL/SAI "+SPACE(10)+"       VL/SAL"
+          SELE 3
+          LIN=LIN+3
+          LOCATE FOR CODMAT=MCODMAT
+          DO WHILE  .NOT. EOF()
+             @ LIN + 3,00 SAY DATA
+             @ LIN + 3,09 SAY NTDOC
+             @ LIN + 3,22 SAY ESCOLA
+             @ LIN + 3,64 SAY QTDENDTR
+             @ LIN + 3,72 SAY QTDSAL
+             @ LIN + 3,79 SAY VALENTR  PICT "999999,999.99"
+             @ LIN + 3,103 SAY VALSAL2  PICT "999999,999.99"
+             LIN=LIN+1
+             CONTINUE
+             DO WHILE LIN >= 63
+                 LIN=3
+                 PAG=PAG+1
+                 EJECT
+                 @ 02,03 SAY "PAG.:"+STR(PAG,3,0)
+             ENDDO
+          ENDDO
+          EJECT
+          SET DEVICE TO SCREEN
+          SET INTEN ON
+          SET CONS ON
+          GOTO TOP
+          LOOP
+       ELSE
+          TONE (250,2)
+          SET CONS ON
+          centra(15,"A impressora nÑo pode estar pronta; tecle <ENTER>")
+          INKEY(0)
+          @ 11,15 CLEAR TO 16,70
+          LOOP
+       ENDIF
+       LOOP
+   ENDIF
+   LOOP
+   CLEAR
+ENDDO
+CLOSE DATABASES
+CLEAR
+******************************************************************************
+USE MATERIAL INDEX INX1
+CLEAR
+CONT="S"
+DO WHILE UPPER(CONT)="S"
+   @ 0,0,24,79 BOX CHR(127)+CHR(176)+chr(127)+CHR(176)+CHR(127)+CHR(176)+CHR(127)+CHR(176)
+   SET COLOR TO N/W
+   centra(00,"INCLUSAO/MANUTENCAO DE MATERIAIS")
+   centra(24,"<F2>-Imprime Codigos De Materiais")
+   SET COLOR TO W/N
+   STORE SPACE(15) TO MCODMAT
+   @ 02,02 SAY "CODIGO.................:"
+   @ 04,02 SAY "MATERIAL...............:"+SPACE(52)
+   @ 06,02 SAY "QTDE. RECEBIDA.........:"+SPACE(08)
+   @ 06,44 SAY "CLASSIFICAÄéO.:"+SPACE(12)
+   @ 08,02 SAY "FORMA DE ENTREGA.......:"+SPACE(23)
+   @ 10,02 SAY "VALOR UNITARIO.........:"+SPACE(19)
+   @ 12,02 SAY "NOTA DE ENTREGA No.....:"+SPACE(35)
+   @ 14,02 SAY "DATA DE ENTREGA........:"+SPACE(12)
+   @ 14,44 SAY "DATA REPOSI...:"+SPACE(10)
+   @ 16,02 SAY "PROCEDENCIA............:"+SPACE(42)
+   @ 18,02 SAY "QUANTIDADE ATUAL.......:"+SPACE(12)
+   @ 18,44 SAY "VALOR ENTREGUE.:"+ SPACE(19)
+   @ 20,02 SAY "VALOR DO ESTOQUE ATUAL.:"+SPACE(19)
+   centra(23,"Digite o codigo do material; <ENTER> p/ a tabela ou <ESC> P/ Sair")
+   do WHILE EMPTY(MCODMAT)
+      @ 02,28 get mcodmat pict "@!"
+      read
+      IF LASTKEY()=27
+         CLOSE DATABASES
+         CLEAR
+         RETURN
+      ELSEIF LASTKEY()=13 .AND. EMPTY(MCODMAT)
+         TABELA(1)
+         @02,28 GET MCODMAT PICTURE "@!"
+         CLEAR GETS
+      ENDIF
+   ENDDO
+   @ 22,02 clear to 23,78
+   ALTER="R"
+   SEEK MCODMAT
+   IF FOUND()
+      MMATERIAL = MATERIAL
+      MQTDRECEB = QTDRECEB
+      MCLASS    = CLASS
+      MVALENT   = VALENT
+      MVALSAL   = VALSAL
+      MNDOC     = NDOC
+      MQTDESAIDA= QTDESAIDA
+      MPROCED   = PROCED
+      MDATAEN   = DATAEN
+      MDATAEN2  = DATAEN2
+      MVALUNIT  = VALUNIT
+      MUNIDADE  = UNIDADE
+      @ 04,28 GET MMATERIAL PICT "@!"
+      @ 06,28 GET MQTDRECEB PICTURE "99999"
+      @ 06,61 GET MCLASS PICTURE "@!"
+      @ 08,28 GET MUNIDADE PICTURE "@!"
+      @ 10,28 GET MVALUNIT PICTURE "999999,999.99"
+      @ 12,28 GET MNDOC PICTURE "@!"
+      @ 14,28 GET MDATAEN PICTURE "99/99/99"
+      @ 14,61 GET MDATAEN2 PICTURE "99/99/99"
+      @ 16,28 GET MPROCED PICTURE "@!"
+      @ 18,28 GET MQTDESAIDA PICTURE "99999"
+      @ 18,62 GET MVALENT PICTURE  "999999,999.99"
+      @ 20,28 GET MVALSAL  PICTURE "999999,999.99"
+      CLEAR GETS
+      @ 22,10 SAY "Codigo existente, <R>retorna; <A>altera; <E>exclui ?" GET ALTER PICTURE "!A"
+      READ
+      @ 22,10 SAY "                                                                 "
+      IF ALTER<>"E" .AND. ALTER<>"A"
+         LOOP
+      ENDIF
+      IF ALTER="E"
+         CERT="N"
+         @ 22,15 SAY "ESTE REGISTRO SERA EXCLUIDO!! TEM CERTEZA <S/N> " GET CERT PICTURE "!A"
+         READ
+         @ 22,15 SAY "                                                        "
+         IF CERT="S"
+            DELETE
+            PACK
+            LOOP
+         ENDIF
+      ENDIF
+   ELSE
+      CERT="S"
+      @ 22,15 SAY "Codigo novo; deseja cadastrar <S/N> " GET CERT PICTURE "!A"
+      READ
+      @ 22,15 SAY "                                                  "
+      IF CERT="N"
+         LOOP
+      ENDIF
+      MMATERIAL = SPACE(50)
+      MUNIDADE  = SPACE(20)
+      MPROCED   = SPACE(30)
+      MNDOC     = SPACE(12)
+      MQTDRECEB = 0
+      MCLASS    = SPACE(8)
+      MDATAEN   = CTOD("  /  /  ")
+      MVALENT   = 0
+      MVALSAL   = 0
+      MVALUNIT  = 0
+      MQTDESAIDA= 0
+      @ 04,28 GET MMATERIAL PICT "@!"
+      @ 06,28 GET MQTDRECEB PICTURE "99999"
+      @ 06,61 GET MCLASS PICTURE "@!"
+      @ 08,28 GET MUNIDADE PICTURE "@!"
+      @ 10,28 GET MVALUNIT PICTURE "999999,999.99"
+      @ 12,28 GET MNDOC PICTURE "@!"
+      @ 14,28 GET MDATAEN PICTURE "99/99/99"
+      @ 16,28 GET MPROCED PICTURE "@!"
+      READ
+      CLEAR GETS
+   ENDIF
+   RESPI="N"
+   @ 22,15 SAY "Os dados estao corretos<S/N> ? " GET RESPI PICTURE "!"
+   READ
+   @ 22,12 SAY "                                             "
+   DO WHILE UPPER(RESPI)="N" .AND. ALTER<>"E"
+      @ 04,28 GET MMATERIAL PICT "@!"
+      @ 06,28 GET MQTDRECEB PICTURE "99999"
+      @ 06,61 GET MCLASS PICTURE "@!"
+      @ 08,28 GET MUNIDADE PICTURE "@!"
+      @ 10,28 GET MVALUNIT PICTURE "999999,999,99"
+      @ 12,28 GET MNDOC PICTURE "@!"
+      @ 14,28 GET MDATAEN PICTURE "99/99/99"
+      @ 16,28 GET MPROCED PICTURE "@!"
+      READ
+      IF ALTER="A"
+         @ 14,61 GET MDATAEN2 PICT "99/99/99"
+         @ 18,28 GET MQTDESAIDA
+         @ 18,61 GET MVALENT PICTURE "999999,999.99"
+         @ 20,28 GET MVALSAL
+         READ
+      ENDIF
+      CLEAR GETS
+      @ 22,15 SAY "Os dados estao corretos<S/N> ? " GET RESPI PICTURE "!"
+      READ
+      @ 22,12 SAY "                                             "
+   ENDDO
+   IF ALTER<>"A"
+      MVALENT=MVALUNIT*MQTDRECEB
+      MQTDESAIDA=MQTDRECEB
+      MVALSAL=MVALENT
+      @ 18,28 GET MQTDESAIDA
+      @ 18,61 GET MVALENT PICTURE "999999,999.99"
+      @ 20,28 GET MVALSAL PICTURE "999999,999.99"
+      CLEAR GETS
+   ENDIF
+   IF ALTER<>"E"
+      IF ALTER<>"A"
+         APPEND BLANK
+      ENDIF
+      USE MATERIAL INDEX INX1
+      REPLACE CODMAT   WITH MCODMAT
+      REPLACE MATERIAL WITH MMATERIAL
+      REPLACE QTDRECEB WITH MQTDRECEB
+      REPLACE CLASS WITH MCLASS
+      REPLACE VALENT WITH MVALENT
+      REPLACE VALSAL WITH MVALSAL
+      REPLACE NDOC WITH MNDOC
+      REPLACE QTDESAIDA WITH MQTDESAIDA
+      REPLACE PROCED WITH MPROCED
+      REPLACE DATAEN WITH MDATAEN
+      REPLACE VALUNIT WITH MVALUNIT
+      REPLACE UNIDADE WITH MUNIDADE
+      IF ALTER="A"
+         REPLACE DATAEN2 WITH MDATAEN2
+      ENDIF
+   ENDIF
+   @ 22,15 SAY "Quer continuar <S/N> ? " GET CONT  PICTURE "!"
+   READ
+ENDDO
+CLOSE DATABASES
+CLEAR
+RETURN
+******************************
+**************************************************
+* PROGRAMA        : MENU .PRG                      *
+* AUTOR           : LUIZ A. CARLIN                 *
+* DATA            : 10/15/93                       *
+* DATA DA ATUAL.  :   /  /                         *
+* FUNCAO          : MENU PRINCIPAL DO SISTEMA DE   *
+*                 : ESTOQUE P/ DELEGACIA DE ENSINO *
+****************************************************
+SET DATE BRITISH
+SET INTEN ON
+SET SCOREBOARD OFF
+SET WRAP ON
+SET PATH TO C:\DOS;
+QUDR=CHR(127)+CHR(178)+CHR(127)+CHR(178)+CHR(127)+CHR(178)+CHR(127)+CHR(178)+CHR(176)
+public MCODMAT, MCODE, NPRO
+CLEAR
+SET MESSAGE TO 23 CENTER
+set key -1 to imp_cod
+set key -2 to imp_esc
+set key -3 to edit
+SET COLOR TO W+/BG
+@ 0,0,24,79 BOX QUDR
+SET COLOR TO B+/RB
+centra(2,"ESTO; Programa De Controle De Estoque De Materiais; ˚ 1.1")
+set color to
+@ 05,60,08,69  box chr(176)
+SET COLOR TO B+/RB
+@ 04,59 to 07,68
+@ 05,60 say " Data : "
+@ 06,60 SAY DATE()
+set color to
+centra(3," MENU PRINCIPAL ")
+@ 06,25,16,48 BOX CHR(176)
+@ 05,24 CLEAR  TO 15,47
+@ 05,24 TO 15,47 DOUBLE
+SET COLOR TO N/W
+@ 06,47 SAY CHR(24)
+@ 07,47 SAY CHR(177)
+@ 08,47 SAY CHR(177)
+@ 09,47 SAY CHR(177)
+@ 10,47 SAY CHR(177)
+@ 11,47 SAY CHR(177)
+@ 12,47 SAY CHR(177)
+@ 13,47 SAY CHR(177)
+@ 14,47 SAY CHR(25)
+SET COLOR TO
+@ 5,3,18,21 BOX CHR(176)
+@ 4,2 CLEAR TO 17,20
+@ 04,02 TO 17,20
+@ 05,03 SAY "<F1>-Help"
+@ 07,03 say "<F2>-Imprime"
+@ 08,03 say "Codigos De"
+@ 09,03 say "Materiais"
+@ 11,03 say "<F3>-Imprime"
+@ 12,03 say "Codigo De Escolas"
+@ 14,03 say "<F4>-Consulta De"
+@ 15,03 say "Banco De Dados"
+save screen to tela_men
+DO WHILE .t.
+    ENCE=" "
+    restore screen from tela_men
+    @ 06,28 PROMPT "1.MATERIAIS....1" MESSAGE "InclusÑo/ManutencÑo    De    Materiais"
+    @ 07,28 PROMPT "2.ESCOLAS......2" MESSAGE "Cadastra/Exclui  Escolas  Do  Programa"
+    @ 08,28 PROMPT "3.MOVIMENTAÄèO.3" MESSAGE "Movimenta Materias (Baixa  De Estoque)"
+    @ 09,28 PROMPT "4.ORGANIZAÄèO..4" MESSAGE "Ordena  E  Indexa  Arquivos  De  Dados"
+    @ 10,28 PROMPT "5.RELATORIOS...5" MESSAGE "Emite     Relatorios    De      Baixas"
+    @ 11,28 PROMPT "6.CONSULTAR....6" MESSAGE "Consulta   De  Materiais  Movimentados"
+    @ 12,28 PROMPT "7.EXCLUIR......7" MESSAGE "ExclusÑo  De   Movimentacîes   Antigas"
+    @ 13,28 PROMPT "8.UTILITARIO...8" MESSAGE "Roda DOS; Espaáo De Disco; Backup; Etc"
+    @ 14,28 PROMPT "9.FINALIZAR....9" MESSAGE "Encerra   A   ExcuáÑo   Do    Programa"
+    MENU TO OPC
+    if lastkey()=27
+       opc=9
+       ENCE=" "
+       keyboard chr(13)
+    endif
+    READ
+    DO CASE
+          CASE OPC=1
+               DO INCLUI
+          CASE OPC=2
+               DO CADESC
+          CASE OPC=3
+               DO MOVIME
+          CASE OPC=4
+               ?? CHR(07)
+               USE MATERIAL
+               INDEX ON CODMAT TO INX1
+               USE ESCOLA
+               INDEX ON CODESCO TO INX2
+               USE MOVIME
+               INDEX ON CODMAT+CODESCO TO INX3
+               INDEX ON DATA TO INX4
+               USE CODES
+               INDEX ON SENHA TO CODX
+               CLOSE DATABASES
+                @ 21,00 CLEAR  TO 24,79
+          CASE OPC=5
+               DO IMPRI
+          CASE OPC=6
+               DO CONSUL
+          CASE OPC=7
+               DO EXCLUI
+          CASE OPC=8
+               DO UTIL
+          CASE OPC=9
+               tone (250,2)
+               @ 21,25 say "Quer Mesmo Sair <S/N> ? " GET ENCE PICTURE "!"
+               READ
+               IF ENCE="S"
+	          centra(20,"Aguare !!! Reindexando Arquivos")
+                  usE MATERIAL  index inx1
+		  reindex
+		  use escola index inx2
+		  reindex
+		  use movime index inx3
+		  reindex
+		  use movime index inx4
+		  reindex
+                  USE CODES index codx
+		  reindex
+                  CLEAR
+                  CLOSE DATABASES
+                  RESTORE SCREEN FROM TEL_0
+                  @ LINHA,COLUNA
+                  CLEAR MEMORY
+                  CANCEL
+               ENDIF
+    ENDCASE
+ENDDO
+************************************************************************
+SELECT 1
+ USE MATERIAL INDEX INX1
+SELECT 2
+ USE ESCOLA INDEX INX2
+SELECT 3
+ USE MOVIME INDEX INX3
+CLEAR
+CONT="S"
+REZA="S"
+MQUANT=0
+DO WHILE UPPER(CONT)="S"
+   STORE SPACE(8) TO MCODESCO
+   STORE SPACE(15) TO MCODMAT
+   @ 0,0,24,79 BOX CHR(127)+CHR(176)+chr(127)+CHR(176)+CHR(127)+CHR(176)+CHR(127)+CHR(176)
+   SET COLOR TO N/W
+   centra(00,"MOVIMENTACOES (BAIXAS)")
+   SET COLOR TO W/N
+   @ 02,02 SAY "CODIGO DA ESCOLA...:"
+   @ 04,02 SAY "ESCOLA.............:"+SPACE(37)
+   @ 06,02 SAY "CODIGO DO MATERIAL.:"+SPACE(17)
+   @ 08,02 SAY "MATERIAL...........:"+SPACE(52)
+   @ 10,02 SAY "VALOR UNITARIO.....:"+SPACE(18)
+   @ 12,02 SAY "QUANTIDADE.........:"+SPACE(18)
+   @ 14,02 SAY "DATA DA ENTREGA....:"+SPACE(09)
+   @ 16,02 SAY "NOTA DE ENTREGA Nß.:"+SPACE(15)
+   @ 18,02 SAY "TOTAL..............:"+SPACE(18)
+   centra(23,"Digite o codigo da escola , <ENTER> p/ a tabela ou <ESC> p/ sair")
+   select 2
+   do while empty(mcodesco)
+      @ 02,23 get mcodesco picture "@!"
+      READ
+      if lastkey()=27
+         CLOSE ALL
+         RETURN
+      elseif lastkey()=13 .and. empty(mcodesco)
+         tabela(2)
+      endif
+   enddo
+   @ 22,02 clear to 23,78
+   @ 02,23 get mcodesco pict "@!"
+   clear gets
+   SEEK MCODESCO
+   IF .NOT. FOUND()
+      centra(23,"Codigo nÑo existente; tecle <ENTER>")
+      INKEY(0)
+      @ 22,02 clear to 23,78
+      LOOP
+   ELSE
+      @ 04,23 GET ESCOLA
+      CLEAR GETS
+      MESCOLA=ESCOLA
+      REZA="N"
+      DO WHILE UPPER(REZA)="N"
+         MCODMAT=SPACE(15)
+         SELECT 1
+         centra(23,"Digite o codigo do material, <ENTER> p/ a tabela ou <ESC> p/ sair")
+         @ 08,02 SAY "MATERIAL...........:"+SPACE(52)
+         @ 10,02 SAY "VALOR UNITARIO.....:"+SPACE(16)
+         @ 12,02 SAY "QUANTIDADE.........:"+SPACE(18)
+         @ 14,02 SAY "DATA DA ENTREGA....:"+SPACE(10)
+         @ 16,02 SAY "NOTA DE ENTREGA Nß.:"+SPACE(15)
+         @ 18,02 SAY "TOTAL..............:"+SPACE(18)
+	 do while empty(mcodmat)
+            @ 06,23 GET MCODMAT  PICTURE "@!"
+            READ
+	    if lastkey()= 27
+               CLOSE DATABASES
+               CLEAR
+               RETURN
+	    elseif lastkey()=13 .and. empty(mcodmat)
+	       tabela(1)
+            ENDIF
+	 enddo
+         @ 22,02 clear to 23,78
+	 @ 06,23 get mcodmat picture "@!"
+	 clear gets
+         SEEK MCODMAT
+         IF .NOT. FOUND()
+            centra(23,"Codigo nÑo existente; tecle <ENTER>")
+            INKEY (0)
+            @ 22,02 clear to 23,78
+            LOOP
+         ENDIF
+         @ 08,23 GET MATERIAL
+         @ 10,23 GET VALUNIT PICT "999999,999.99"
+         MQTDESAIDA=QTDESAIDA
+         MQTAUX=QTDESAIDA
+         MVALUNIT=VALUNIT
+         MMATERIAL=MATERIAL
+         CLEAR GETS
+         SELECT 3
+         MQTDENDTR= 0
+         MDATA    = CTOD("  /  /  ")
+         MNTDOC   = SPACE(12)
+         @ 12,23 GET MQTDENDTR PICTURE "99999"
+         @ 14,23 GET MDATA PICTURE "99/99/99"
+         @ 16,23 GET MNTDOC PICTURE "@!"
+         READ
+         IF MQTDENDTR>MQTDESAIDA
+            centra(23,"O estoque e de apenas "+ STR(MQTDESAIDA,5)+ " Tecle <ENTER>")
+            READ
+            INKEY(0)
+            @ 22,02 clear to 23,78
+            LOOP
+         ENDIF
+         MVALENTR=MQTDENDTR*MVALUNIT
+         @ 18,23 GET MVALENTR PICT "999999,999.99"
+         CLEAR GETS
+         @ 23,15 SAY "Os dados estao corretos <S/N>?" GET REZA PICTURE "!"
+         READ
+         @ 23,15 SAY "                                                    "
+         IF UPPER(REZA)="N"
+            @ 08,02 SAY "MATERIAL...........:"+SPACE(52)
+            @ 10,02 SAY "VALOR UNITARIO.....:"+SPACE(18)
+            @ 12,02 SAY "QUANTIDADE.........:"+SPACE(18)
+            @ 14,02 SAY "DATA DA ENTREGA....:"+SPACE(10)
+            @ 16,02 SAY "NOTA DE ENTREGA Nß.:"+SPACE(15)
+            @ 18,02 SAY "TOTAL..............:"+SPACE(18)
+             LOOP
+         ENDIF
+         SELECT 1
+         MVALSAL    = VALSAL
+         MQTDESAIDA = MQTAUX-MQTDENDTR
+         MVALSAL    = MVALSAL-MVALENTR
+         REPLACE QTDESAIDA WITH MQTDESAIDA
+         REPLACE VALSAL    WITH MVALSAL
+         SELECT 3
+         APPEND BLANK
+         REPLACE CODESCO   WITH  MCODESCO
+         REPLACE ESCOLA    WITH  MESCOLA
+         REPLACE CODMAT    WITH  MCODMAT
+         REPLACE MATERIAL  WITH  MMATERIAL
+         REPLACE QTDENDTR  WITH  MQTDENDTR
+         REPLACE NTDOC     WITH  MNTDOC
+         REPLACE VALENTR   WITH  MVALENTR
+         REPLACE DATA      WITH  MDATA
+         REPLACE VALSAL2   WITH  MVALSAL
+         REPLACE QTDSAL    WITH  MQTDESAIDA
+         @ 23,15 SAY "Deseja mais moventacoes <S/N>?" GET CONT PICTURE "!"
+         READ
+         @ 23,15 SAY "                                            "
+     ENDDO
+  ENDIF
+ENDDO
+CLOSE DATABASE
+CLEAR
+RETURN
+lin=row()
+col=col()
+SAVE SCREEN TO t_senha
+@ 08,08 clear to 15,50
+@ 08,08 TO 15,50
+IF FILE ([SENHA.MEM])
+   RESTORE FROM SENHA
+    @ 09,10 SAY "Digite A Senha Anterior"
+   v_senha_1=seguran(09,40)
+   if V_senha_1<>senha_mem
+      Senha_inv()
+   endif
+else
+   V_SENHA_1=SPACE(10)       
+   V_SENHA_2=SPACE(10)
+   V_SENHA_3=SPACE(10)
+   SENHA_MEM=SPACE(10)
+ENDIF
+@ 10,10 say "Digite a Nova Senha"
+v_senha_2=Seguran(10,40)
+@ 11,10 say "Confirme a Nova Senha"
+v_senha_3=seguran(11,40)
+if v_senha_2=V_senha_3
+   senha_mem=V_senha_2
+   save to senha all like senha_mem
+else
+   ??" senha nao confere"
+   quit
+endif
+restore screen from t_senha
+@ lin,col
+
+*CLEAR
+*?"Digite a Senha"
+*teste=seguran(row(),col())
+*?teste
+
+
+*****************************************
+FUNCTION SEGURAN
+PRIVATE CC,REL,TECLA,MSX
+PARAMETERS L1,C1
+SET INTEN OFF
+@ L1,C1  SAY SPACE(11)
+@ L1,C1-1 SAY "["
+@ L1,C1+10 SAY "]"
+declare msx[10]
+for i= 1 to 10
+    msx[i] = " "
+next
+REL=" "
+TECLA=LASTKEY()
+V_senha=" "
+j=1
+do while j <10
+   @ L1,C1 GET MSX[J] PICT "!"
+   READ
+   IF lastkey()=13
+      EXIT
+   ELSEIF LASTKEY()=27
+      RETURN (V_senha)
+   ENDIF
+   @ L1,C1 SAY "*"
+   c1=c1+1
+   j=j+1
+enddo  
+set intensit on
+FOR K = 1 TO 10
+    V_senha=V_senha+MSX[K]
+NEXT
+V_senha=ALLTRIM(V_senha)
+RETURN (V_senha)
+
+**************************************************
+function senha_inv
+tone(250,1)
+?"Senha Invalida"
+quit
+CLEAR
+SET ESCAPE ON
+SET COLOR TO W/B+
+FOR I=0 TO 24
+    @ I,0 SAY REPLICATE ("ESTO ",16)
+    inkey(.01)
+NEXT
+SET COLOR TO N/W
+@ 02,7 say "***> ESTO; Programa de Controle de Estoques de Materiais; V 1.0 <***"
+@ 04,25 say " Autor : L. A. Carlin 1993 "
+@ 08,30 say      " CORSA SOFT # 1993"
+inkey(1)
+SAVE SCREEN TO TELA_1
+SET COLOR TO
+CLEAR
+SET CURSOR ON
+DO MENU
+return
+
+************************************************
+* PROGRAMA   : UTIL.PRG
+* AUTOR      : LUIZ A. CARLIN
+* DATA       : 22/12/93
+* DATA ATUA. :   /  /
+* FUNCAO     : UTILITARIO DO SISTEMA DE CONTROLE DE ESTOQUE
+*
+********************************
+OPU=0
+SET PROCEDURE TO UTIL
+SAVE SCREEN TO TELA1
+SET WRAP ON
+SET INTEN ON
+SET COLOR TO N/W
+SET COLOR TO W/N
+@ 13,32,20,58 BOX CHR(176)
+@ 12,32 CLEAR TO 19,57
+@ 12,31 TO 19,56 DOUBLE
+SET COLOR TO N/W
+@ 13,56 SAY CHR(24)
+@ 14,56 SAY CHR(177)
+@ 15,56 SAY CHR(177)
+@ 16,56 SAY CHR(177)
+@ 17,56 SAY CHR(177)
+@ 18,56 SAY CHR(25)
+SET COLOR TO
+save screen to tela1_a1
+DO WHILE .T.
+   restore screen from tela1_a1
+   set intensity on
+   @ 12,39 SAY "UTILITARIO:"
+   @ 13,33 PROMPT "1.MANUTENÄO DE SENHAS"
+   @ 14,33 PROMPT "2.ESPAÄO DE DISCO...."
+   @ 15,33 PROMPT "3.RODA DOS..........."
+   @ 16,33 PROMPT "4.FAZ BACKUP DO SIST."
+   @ 17,33 PROMPT "5.COPIA ARQ. DE DADOS"
+   @ 18,33 PROMPT "6.RETORNA P/ MENU...."
+   if lastkey()=27
+      opu=6
+      keyboard chr(13)
+   endif
+   MENU TO OPU
+   DO CASE
+      CASE OPU=1
+           DO MANUTSEN
+      CASE OPU=2
+           DO ESPACO
+      CASE OPU=3
+           DO RODADOS
+      CASE OPU=4
+           DO COPSEG
+      CASE OPU=5
+            DO COPARQ
+      CASE OPU=6
+           SET PROCEDURE TO
+           RESTORE SCREEN FROM TELA1
+           SET INTEN ON
+           RETURN
+  ENDCASE
+ENDDO
+*********************************************************************
+PROCEDURE MANUTSEN
+@ 13,40,17,78 BOX "∞"
+@ 12,39 clear to 16,77
+@ 12,39 TO 16,77
+IF FILE ([SENHA.MEM])
+   RESTORE FROM SENHA   additive
+   @ 13,40 SAY "Digite A Senha Anterior"
+   v_senha_1=seguran(13,66)
+   if empty(V_senha_1)
+      return
+   endif
+   if V_senha_1<>senha_mem
+      senha_inv()
+      return
+   endif
+else
+   V_SENHA_1=SPACE(10)       
+   V_SENHA_2=SPACE(10)
+   V_SENHA_3=SPACE(10)
+   SENHA_MEM=SPACE(10)
+ENDIF
+@ 14,40 say "Digite a Nova Senha"
+v_senha_2=Seguran(14,66)
+if empty(v_senha_2)
+   return
+endif
+@ 15,40 say "Confirme a Nova Senha"
+v_senha_3=seguran(15,66)
+if empty(v_senha_3)
+   return
+endif
+if v_senha_2=V_senha_3
+   senha_mem=V_senha_2
+   save to senha all like senha_mem
+else
+   senha_inv()
+   return
+endif
+*****************************************************************************
+PROCEDURE ESPACO
+SAVE SCREEN TO TELA2
+OPCAO="S"
+DRIVE="A"
+ESP=0
+DO WHILE OPCAO="S"
+   RESTORE SCREEN FROM TELA2
+   @ 13,49,17,72 box "∞"
+   @ 12,48 CLEAR TO 16,71
+   @ 12,48 TO 16,71
+   @ 13,49 SAY "ENTRE C/ O DRIVE: " GET DRIVE PICTURE "!"
+   READ
+   IF DRIVE>="A" .AND. DRIVE <="C"
+      IF DRIVE="A"
+         SET DEFA TO A:
+         !A:
+         ESP=DISKSPACE()
+       ELSEIF DRIVE="B"
+          SET DEFA TO B:
+          !B:
+          ESP=DISKSPACE()
+      ELSEIF DRIVE="C"
+         SET DEFA TO C:
+         !C:
+         ESP=DISKSPACE()
+      ENDIF
+      SET DEFA TO C:
+      !C:
+      ESP=ESP/1024
+      ESP=ESP/1024
+      @ 14,49 SAY "ESPACO: "+STR(ESP,9,2)
+      @ 15,49 SAY "MEGA-BYTES"
+      @ 17,58 SAY "OUTRO DRIVE?" GET OPCAO PICTURE "!"
+      READ
+      @ 17,58 SAY "                   "
+   ELSE
+      @ 17,58 SAY "DRIVE INVALIDO!!"
+      INKEY(0)
+      @ 17,50 SAY "                         "
+   ENDIF
+ENDDO
+RESTORE SCREEN FROM TELA2
+RETURN
+******************************************************************************
+PROCEDURE RODADOS
+SAVE SCREEN TO TELA4
+COMA=SPACE(40)
+set intensit on
+DO WHILE .T.
+   @ 21,16,24,77 box "∞"
+   @ 20,14 clear to 23,76
+   @ 20,14 to 23,76
+   @ 21,15 SAY "Digite o Comando : "get COMA PICT "@!"
+   @ 22,15 say "Ou <ENTER> P/ Sair"
+   READ
+   IF COMA=SPACE(40)
+      RESTORE SCREEN FROM TELA4
+      RETURN
+   ENDIF
+   COMA=ALLTRIM(COMA)
+   SAVE SCREEN TO TELA4A
+   CLEAR
+   RUN &COMA
+   @ 24,25 SAY "Tecle <ENTER> p/ Continuar"
+   inkey (0)
+   RESTORE SCREEN FROM TELA4A
+   COMA=SPACE(40)
+ENDDO
+RETURN
+*****************************************************************************
+PROCEDURE COPSEG
+SAVE SCREEN TO TELA5
+set path to c:\dos
+DO WHILE .T.
+   UNI="  "
+                      
+   @ 15,46,19,76 box "∞"
+   @ 14,44 clear to 18,75
+   @ 14,44 to 18,75
+   @ 15,46 SAY "Unidade Destino : " GET UNI PICT "@!"
+   @ 16,46 SAY "Ou <ENTER> P/ Sair"
+   READ
+   save screen to tela5a
+   IF UNI=" "
+      RESTORE SCREEN FROM TELA5
+      SET INTEN ON
+      EXIT
+   ENDIF
+   if uni >="A:" .AND. UNI<="B:"
+      SAVE SCREEN TO TELA5A
+      CLEAR
+      RUN BACKUP C: &UNI
+      RESTORE SCREEN FROM TELA5A
+   ELSE
+      @ 17,45 SAY "Drive Invalido!!"
+      inkey(.9)
+      restore screen from tela5a
+      loop
+  endif
+ENDDO
+RETURN
+*****************************************************************************
+PROCEDURE COPARQ
+UNI="  "
+set intens on
+CLOSE DATABASES
+SAVE SCREEN TO TELA7
+CA=0
+USE MOVIME INDEX INX3
+DO WHILE .T.
+    mcodmat=space(15)
+   IF .NOT. FILE ([CPI.MEM])
+      CA=0
+   ELSE
+      RESTORE FROM CPI ADDITIVE
+   ENDIF
+   UNI="  "
+   RESTORE SCREEN FROM TELA7
+   @ 15,46,21,75 box "∞"
+   @ 14,44 clear to 20,74
+   @ 14,44 to 20,74
+   @ 15,45 SAY "Codigo Do Material:"
+   @ 16,45 say "Ou Enter P/ Sair"
+   @ 17,45 get mcodmat pict "@!"
+   read
+   IF mcodmat=space(15)
+      RESTORE SCREEN FROM TELA7
+      SET INTEN ON
+      EXIT
+   ENDIF
+   SEEK MCODMAT
+   IF .NOT. FOUND()
+       @ 19,45 SAY "Nao encontrado"
+       inkey (.9)
+       loop
+   endif
+   @ 18,45 SAY "Unidade Destino :" GET UNI PICT "@!"
+   READ
+   IF uni="  "
+      RESTORE SCREEN FROM TELA7
+      SET INTEN ON
+      EXIT
+   ENDIF
+   if uni >="A:" .OR. UNI<="B:"
+      SET CONSOLE OFF
+      SET TALK OFF
+      SET ECHO OFF
+      CA=CA+1
+      use movime
+      COPY TO AR.DBF FOR CODMAT=MCODMAT
+      ARQ=STR(CA,6,0)
+      ARQ=ALLTRIM(ARQ)
+      FIL="AR"+ARQ
+      FIL2=FIL+".DBF"
+      fil2=alltrim(fil2)
+      uni=ALLTRIM(UNI)
+      RUN COPY AR.DBF &UNI&FIL2
+      SAVE TO CPI ALL LIKE CA*
+      SET CONSOLE ON
+   else
+      @ 19,45 SAY "DRIVE INVALIDO!!"
+      inkey(0)
+      loop
+   ENDIF
+ENDDO
+RETURN
+
+*****************************************
+FUNCTION SEGURAN
+*SET KEY 8 TO _V
+PRIVATE CC,REL,TECLA,MSX
+PARAMETERS L1,C1
+CC=C1+10
+SET INTEN OFF
+@ L1,C1  SAY SPACE(11)
+@ L1,C1-1 SAY "["
+@ L1,CC   SAY "]"
+declare msx[10]
+for i= 1 to 10
+    msx[i] = " "
+next
+V_senha=" "
+J=1
+do while j <10
+   @ L1,C1 GET MSX[J] PICT "!"
+   READ
+   IF lastkey()=13
+      EXIT
+   ELSEIF LASTKEY()=27
+      RETURN (V_senha)
+   ENDIF
+   @ L1,C1 SAY "*"
+   c1=c1+1
+   j=j+1
+enddo  
+set intensit on
+FOR K = 1 TO 10
+    V_senha=V_senha+MSX[K]
+NEXT
+V_senha=ALLTRIM(V_senha)
+RETURN (V_senha)
+**************************************************
+PROCEDURE imp_cod
+SAVE SCREEN TO TLMENU
+use material index inx1
+GOTO TOP
+IF ISPRINTER()
+   @ 21,29 SAY "Imprimindo..."
+   SET CONS OFF
+   SET DEVICE TO PRINTER
+   @ 00,49 SAY "Codigos De Materiais"
+   PAG=1
+   LIN=2
+   @ 02,03 SAY "PAG. "+STR(PAG,3,0)
+   @ LIN + 1,01 SAY "Codigo        "+"  Material "+space(35)+ "           Classificacao  "+"  Data de Entrada"
+   DO WHILE  .NOT. EOF()
+      @ LIN + 2,01 SAY CODMAT
+      @ LIN + 2,17 SAY MATERIAL
+      @ LIN + 2,72 SAY CLASS
+      @ LIN + 2,89 SAY DATAEN
+      LIN=LIN+1
+      SKIP
+      DO WHILE LIN >= 63
+         LIN=3
+         PAG=PAG+1
+         EJECT
+         @ 02,03 SAY "PAG.:"+STR(PAG,3,0)
+      ENDDO
+   ENDDO
+   EJECT
+   SET DEVICE TO SCREEN
+   SET INTEN ON
+   SET CONS ON
+   @ 21,29 SAY SPACE(15)
+   GOTO TOP
+ELSE
+   TONE (250,2)
+   SET CONS ON
+   @ 21,15 SAY "A impressora nÑo pode estar pronta; tecle <ENTER>"
+   INKEY(0)
+   RESTORE SCREEN FROM TLMENU
+ENDIF
+CLOSE ALL
+set cursor on
+RESTORE SCREEN FROM TLMENU
+RETURN
+***************************************************************
+PROCEDURE imp_esc
+SAVE SCREEN TO TLMENU
+use escola index inx2
+GOTO TOP
+IF ISPRINTER()
+   @ 21,29 SAY "Imprimindo..."
+   SET CONS OFF
+   SET DEVICE TO PRINTER
+   @ 00,49 SAY "Codigos De Escolas"
+   PAG=1
+   LIN=2
+   @ 02,03 SAY "PAG. "+STR(PAG,3,0)
+   @ LIN + 1,01 SAY "Codigo        "+"  Escola"
+   DO WHILE  .NOT. EOF()
+      @ LIN + 2,01 SAY CODesco
+      @ LIN + 2,17 SAY ESCOLA
+      LIN=LIN+1
+      SKIP
+      DO WHILE LIN >= 63
+         LIN=3
+         PAG=PAG+1
+         EJECT
+         @ 02,03 SAY "PAG.:"+STR(PAG,3,0)
+      ENDDO
+   ENDDO
+   EJECT
+   SET DEVICE TO SCREEN
+   SET INTEN ON
+   SET CONS ON
+   @ 21,29 SAY SPACE(15)
+   GOTO TOP
+ELSE
+   TONE (250,2)
+   SET CONS ON
+   @ 21,15 SAY "A impressora nÑo pode estar pronta; tecle <ENTER>"
+   INKEY(0)
+   RESTORE SCREEN FROM TLMENU
+ENDIF
+CLOSE ALL
+set cursor on
+RESTORE SCREEN FROM TLMENU
+RETURN
+*******************************************************************
+procedure help
+paRAMETERS PROG,LIN,VAR
+SAVE SCREEN TO TLHP1
+DO CASE
+   CASE PROG = "MENU"
+       @ 9,9 TO 14,41
+       @ 10,10 SAY "     Modulo Menu Principal     "
+       @ 11,10 say "-Use As Setas Para  Escolher  A"
+       @ 12,10 say "-Opcao Desejada Ou Pressione  A"
+       @ 13,10 say "-Tecla De Funcao Desejada      "
+       @ 21,15 say "Pressione Algo P/ Continuar"
+       inkey(0)
+       restore screen from tlhp1
+       return
+  CASE PROG="INCLUI"
+       @ 09,09 TO 13,41
+       @ 10,10 SAY "Modulo De InclusÑo de Materiais"
+       @ 11,10 Say "-Preencha Os Campos Conforme Os"
+       @ 12,10 say "-Seus Respectivos Titulos"
+       @ 21,25 say "Pressione Algo P/ Continuar"
+       inkey (0)
+       RESTORE SCREEN FROM TLHP1
+       return
+   case prog="CADESC"
+       @ 9,9 TO 13,41
+       @ 10,10 SAY "Modulo  De  InclusÑo De Escolas"
+       @ 11,10 Say "-Preencha Os Campos Conforme Os"
+       @ 12,10 say "-Seus Respectivos Titulos"
+       @ 21,25 say "Pressione Algo P/ Continuar"
+       inkey (0)
+       RESTORE SCREEN FROM TLHP1
+       return
+   case prog="MOVIME"
+       @ 9,9 TO 13,41
+       @ 10,10 SAY "Modulo De Movimentaáîes(Baixas)"
+       @ 11,10 Say "-Preencha Os Campos Conforme Os"
+       @ 12,10 say "-Seus Respectivos Titulos"
+       @ 21,25 say "Pressione Algo P/ Continuar"
+       inkey (0)
+       RESTORE SCREEN FROM TLHP1
+       return
+   case prog="IMPRI"
+       @ 9,9 to 13,41
+       @ 10,10 say "Modulo De Relatorios De Baixas"
+       @ 11,10 Say "-Preencha Os Campos Conforme Os"
+       @ 12,10 say "-Seus Respectivos Titulos"
+       @ 21,25 say "Pressione Algo P/ Continuar"
+       inkey (0)
+       RESTORE SCREEN FROM TLHP1
+       return
+   case prog="CONSUL"
+       @ 9,9 to 13,41
+       @ 10,10 say "Modulo De Consulta De Baixas  "
+       @ 11,10 Say "-Preencha Os Campos Conforme Os"
+       @ 12,10 say "-Seus Respectivos Titulos"
+       @ 21,25 say "Pressione Algo P/ Continuar"
+       inkey (0)
+       RESTORE SCREEN FROM TLHP1
+       return
+   case prog="EXCLUI"
+       @ 9,9 to 13,41
+       @ 10,10 say "Modulo de ExclusÑo  De  Baixas"
+       @ 11,10 Say "-Preencha Os Campos Conforme Os"
+       @ 12,10 say "-Seus Respectivos Titulos"
+       @ 21,25 say "Pressione Algo P/ Continuar"
+       inkey (0)
+       RESTORE SCREEN FROM TLHP1
+       return
+   case Prog="UTIL"
+       @ 10,10 say "    Modulo 'Utilitarios'      "
+       @ 11,10 Say "-Preencha Os Campos Conforme Os"
+       @ 12,10 say "-Seus Respectivos Titulos"
+       @ 21,25 say "Pressione Algo P/ Continuar"
+       inkey (0)
+       RESTORE SCREEN FROM TLHP1
+       return
+endcase
+RETURN
+
+************************************************************************
+procedure edit
+do edita
+return
+
+***********************************************************
+PROCEDURE TABELA
+PARAMETERS NPRO
+IF NPRO=1   .or. npro=3
+   DECLARE MCB[2]
+   MCB[1]="Codigo"
+   MCB[2]="Material"
+   DECLARE MMC2[2]
+   MMC2[1]="@!"
+   MMC2[2]="@!"
+   DECLARE MCP2[2]
+   MCP2[1]="CODMAT"
+   MCP2[2]="maTERIAL"
+ELSEIF NPRO=2
+   DECLARE MCB[2]
+   MCB[1]="Codigo"
+   MCB[2]="Escola"
+   DECLARE MMC2[2]
+   MMC2[1]="@!"
+   MMC2[2]="@!"
+   DECLARE MCP2[2]
+   MCP2[1]="codesco"
+   MCP2[2]="escola"
+endif
+save screen to tela_tab
+@ 07,07 TO 22,71
+@ 21,08 SAY "<ENTER> Seleciona"
+dbedit(08,08,20,70,mcp2,"funcao",mmc2,mcb,.t.,.t.,.t.)
+restore screen from tela_tab
+return
+
+*******************************************************************
+function funcao
+parameters stat, pos
+if stat=4
+   if lastkey()=13
+      if npro=1 .or. npro=3
+         mcodmat=codmat
+      else
+          mcode=codesco
+          mcodesco=codesco
+      endif
+      return 0
+   endif
+else
+  return 1
+endif
+
+******************************************************************
+function centra
+parameters linha_1, mensagem
+coluna_1=int(80-len(alltrim(mensagem)))/2
+@ linha_1,coluna_1 say mensagem
+
+**************************************
+procedure senha_inv
+@ 16,41 say "Senha Invalida"
+inkey(1.2)
+return
+CLEAR
+SET ESCAPE ON
+SET COLOR TO W/B+
+FOR I=2 TO 22
+    @ I,3 SAY REPLICATE ("ESTO ",15)
+    inkey(.01)
+NEXT
+@ 1,1 TO 23,79 DOUBLE
+SET COLOR TO N/W
+@ 02,7 say "***> ESTO; Programa de Controle de Estoques de Materiais; V 1.0 <***"
+@ 04,25 say " Autor : L. A. Carlin 1993 "
+@ 08,30 say      " CORSA SOFT # 1993"
+inkey(.050
+*@ 12,22 SAY "Pressione <F2> Para Entrar no Programa"
+SAVE SCREEN TO TELA_1
+SET COLOR TO
+*@ 12,2 SAY "ESTO"
+@ 11,1 TO 13,6 DOUBLE
+*QUADRO=SAVESCREEN(11,1,13,6)
+*SET CURSOR OFF
+*DO WHILE .T.
+*   FOR I= 1 TO 70
+*       DO MOVE
+*   NEXT
+*   FOR I=70 TO 1 STEP -1
+*       DO MOVE
+*   NEXT
+*ENDDO
+*RETURN
+***********************************************************
+PROCEDURE MOVE
+RESTORE SCREEN FROM TELA_1
+RESTSCREEN(11,I,13,I+5,QUADRO)
+INKEY(.1)
+TCL=LASTKEY()
+IF TCL=-1
+   CLEAR
+   SET CURSOR ON
+   DO MENU
+ENDIF
+@ 11,I CLEAR TO 13,I+6
+RETURN
+
+

@@ -1,0 +1,66 @@
+******************************************************************
+* PROGRAMA: TMINCAG
+* OBJETIVO: INCULSAO DE REGISTROS NA AGENDA DE CLIENTES DEVEDORES
+* AUTORES : ANA PAULA, DANIELLE, EVERTON, LUIZ
+* DATA    : 01/10/94
+******************************************************************
+SELE 1
+USE TMBCLI INDEX TMICLI1
+SELE 2
+USE TMBAGEN
+SOMBRA(07,05,15,70,.f.)
+@ 07,20 SAY "INCLUSŽO DE CLIENTES DEVEDORES"
+@ 09,07 SAY "Data...............:"
+@ 10,07 SAY "C•digo do Cliente..:"
+@ 11,07 SAY "Nome do Cliente....:"
+@ 12,07 SAY "Descri‡„o..........:"
+@ 13,07 SAY "Valor..............:"
+@ 14,07 SAY "Data Pagamento.....:"
+SAVE SCREEN TO TELAGEN
+DO WHILE .T.
+   RESTORE SCREEN FROM TELAGEN
+   MDTA    = DATA_SIS
+   MCOD    = 0
+   MNOME   = SPACE(35)
+   MDES    = SPACE(41)
+   MVALOR  = 0
+   MDTPG   = CTOD("  /  /  ")
+   @ 09,28 GET MDTA
+   READ
+   IF LASTKEY()=27
+      EXIT
+   ENDIF
+   SELE 1
+   TABELA()
+   @ 10,28 GET MCOD PICT "9999"
+   CLEAR GETS
+   IF LASTKEY()=27
+      EXIT
+   ENDIF
+   MNOME = NOME
+   @ 11,28 GET MNOME PICT "@!"
+   CLEAR GETS
+   SELE 2
+   @ 12,28 GET MDES  PICT "@!"
+   @ 13,28 GET MVALOR PICT "999,999.99"
+   @ 14,28 GET MDTPG VALID(DIA_UTIL(MDTPG))
+   READ
+   INKEY(3)
+   IF .NOT. CONFIRMA("CONFIRMA OS DADOS ?")
+      LOOP
+   ENDIF
+   APPEND BLANK
+   REPLACE DTA    WITH MDTA
+   REPLACE CODCLI WITH MCOD
+   REPLACE NOME   WITH MNOME
+   REPLACE DES    WITH MDES
+   REPLACE VALOR  WITH MVALOR
+   REPLACE DTPG   WITH MDTPG
+   IF .NOT. CONFIRMA("DESEJA CONTINUAR ?")
+       EXIT
+   ENDIF
+ENDDO
+CLOSE ALL
+RETURN
+
+* EOP TMINCAG

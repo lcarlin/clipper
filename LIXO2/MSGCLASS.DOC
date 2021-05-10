@@ -1,0 +1,23 @@
+* bop msgclass.doc
+para criar o objeto de mensagem :
+ObjMsg := msgnew(l,c)
+
+onde :
+  l = linha da mensagem
+  c = coluna da mensagem
+
+para mostrar uma mensagem:
+.ObjMsg:msgDisplaY(<mensagem>
+
+para mostrar a mensagem anterior:
+.ObjMsg:msgRecall()
+
+para apagar uma mensagem :
+.ObjMsg:msgClear()
+
+ atributos:
+ color := cor da mensagem
+ nRow ,  nCol := coordenadas da mensagem
+ block :=  bloco de codigo para o tratamento da mensagem
+ stack := indice da pilha de mensagem
+* eop msgclass.doc

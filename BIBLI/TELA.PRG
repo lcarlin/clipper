@@ -1,0 +1,38 @@
+CLEAR
+SET COLOR TO N/G
+FOR I=2 TO 22
+    @ I,2 SAY REPLICATE ("Bibli ",13)
+NEXT
+@ 1,1 TO 23,79 DOUBLE
+SET COLOR TO N/W*
+@ 02,5 say "***> BIBLI; Programa de Controle de Bibliotecas e Livrarias, V 1.0 <***"
+@ 12,19 SAY "Pressione <ESC> Para Entrar no Programa"
+SAVE SCREEN TO TELA_1
+SET COLOR TO
+@ 12,2 SAY "BIBLI"
+@ 11,1 TO 13,7 DOUBLE
+QUADRO=SAVESCREEN(11,1,13,7)
+SET CURSOR OFF
+DO WHILE .T.
+   FOR I= 1 TO 70
+       DO MOVE
+   NEXT
+   FOR I=70 TO 1 STEP -1
+       DO MOVE
+   NEXT
+ENDDO
+RETURN
+***********************************************************
+PROCEDURE MOVE
+RESTORE SCREEN FROM TELA_1
+RESTSCREEN(11,I,13,I+6,QUADRO)
+TECLA=INKEY(.1)
+IF TECLA=27
+   CLEAR
+   SET CURSOR ON
+   DO BIBLI
+ENDIF
+@ 11,I CLEAR TO 13,I+6
+RETURN
+
+

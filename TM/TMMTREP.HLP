@@ -1,0 +1,38 @@
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$ bof tmmtrep.hlp                    $
+$ data : 05/11/94                    $
+$ obj: Ajuda da manutencao de reparos$
+$                                    $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+# tmmtrep mcodcli
+    Digite  o  c¢digo do cliente  cujo
+equipamento  ser   reparado.  S¢  ser  
+aceito clientes j  cadastrados.
+# fim
+
+# tmmtrep mcodfunc
+    Digite  o  c¢digo  do  funcionario 
+que efetuar  o reparo S¢ ser„o aceitos
+funcion rios j  cadastrados.
+# fim
+
+# tmmtrep mdescrep
+    Digite  a  descri‡„o do reparo que
+ser  efetuado.  Pode-se abreviar, caso
+n„o caiba no espa‡o reservado.
+# fim
+
+# tmmtrep mvalrep
+    Digite o  valor do reparo. O valor
+e  quantidade  das   pe‡as  utilizadas
+ser  pedida posteriormente.
+# fim
+
+# tmmtrep mqtd
+    Entre  com   a   quantidade  dessa
+pe‡a  que  foi  utilizada no reparo do
+equipamento.
+# fim
+
+$ eof tmmtrep

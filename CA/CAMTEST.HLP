@@ -1,0 +1,26 @@
+# camtest ccod
+   Entre com o  codigo  do produto  em
+estoque. Caso o codigo nao exista,sera
+pedida a confirmacao para cadastrar um
+novo  item  com  o codigo digitado. Se 
+quiser  alterar  algum  dado  de algum 
+produto  em estoque e nao souber o co-
+digo,  pressione  a  tecla  <ENTER>  e 
+aparecera uma tabela com todos dos co-
+digos  de  todos os produtos cadastra-
+dos.  Utilize  as setas de direcao e a 
+tecla  <ENTER> para selecionar o codi-
+go desejado.
+# fim
+
+# camtest cproduto
+   Entre com a descricao do produto ou
+nome do produto cadastrado.
+# fim
+
+
+# camtest nvalunit
+  Entre com o valor do KILO do produto
+
+# fim
+

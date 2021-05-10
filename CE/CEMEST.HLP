@@ -1,0 +1,52 @@
+# cemest ccod_pes
+   Digite o codigo do  fornecedor , se
+voce  estiver  na entrada de produtos.
+   Se  voce estiver na saida(baixa) de
+mateirais em estoque, digite o  codigo
+do cliente.
+
+Obs: Caso voce nao se lembre do codigo
+,tecle  <ENTER>  antes  de  digitar  o
+codigo  e  uma  tabela  aparecera  com
+todos  os  codigos   dos   respectivos
+clientes/fornecedores.
+# fim
+
+# cemest ccod_item
+   Entre com o codigo do item que voce
+deseja  movimentar.  Caso  nao saiba o
+codigo  do  mesmo,   tecle  <ENTER>  e
+aparecera  uma  tabela  com  todos  os
+codigos de todos os itens em estoque.
+# fim
+
+# cemest nquant
+   Entre com a quantidade a ser  movi-
+mentada do estoque.
+Obs: Se  estiver na Saida de Mateirais
+a  quantidade  movimentada  nao podera
+ser  maior  que a quantidade minima em
+estoque. Ex:  Se a quantidade de certo
+produto e  100 e a quantidade minima e
+10, nao sera possivel retirar mais que
+90 unidades do estoque.
+# fim
+
+# cemest ndiaspra
+  Entre com os dias de prazo para o ve
+ncimento de cada  parcela do  valor da
+compra. Ex. 30 dias para cada Parcela.
+# fim
+
+# cemest nparcelas
+  Entre com o numero de parcelas do pa
+gamento da compra efetuada. Ex 3 parce
+las.
+# fim
+
+# cemest ddatapagto
+  Entre com a data do pagamento da di-
+vida assumida pelo cliente. Automatica
+mente e apresentada a data atual. Alte
+re-a se necessario.
+# fim

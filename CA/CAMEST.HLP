@@ -1,0 +1,27 @@
+# camest ccod_pes
+   Entre com o codigo do  cliente  que
+efetuou a compra.
+Obs: Caso voce nao se lembre do codigo
+,tecle  <ENTER>  antes  de  digitar  o
+codigo  e  uma  tabela  aparecera  com
+todos  os  codigos   dos   respectivos
+clientes.
+# fim
+
+# camest ccod_item
+   Entre com o codigo do item que voce
+deseja  vender    .  Caso  nao saiba o
+codigo  do  mesmo,   tecle  <ENTER>  e
+aparecera  uma  tabela  com  todos  os
+codigos de todos os itens em estoque.
+# fim
+
+# camest nquant
+   Entre com os quantidade (KILOS) que
+foram vendidos.
+# fim
+
+# camest ddata_pg
+   Entre com a data em que o pagamento
+da compra sera efetuado.
+# fim
